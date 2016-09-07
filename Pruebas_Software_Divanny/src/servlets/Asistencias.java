@@ -1,0 +1,93 @@
+package servlets;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import beans.EmpleadoBean;
+import dao.factory.DAOFactory;
+import dao.interfaces.I_Asistencias;
+
+/**
+ * Servlet implementation class ListarEmpleado
+ */
+@WebServlet("/Asistencias")
+public class Asistencias extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Asistencias() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+		I_Asistencias asistencias=dao.getAsistenciasDAO();
+		int est=Integer.parseInt((request.getParameter("est")));
+		ArrayList<EmpleadoBean> empleados= new ArrayList<EmpleadoBean>();
+		empleados=asistencias.listarEmpleados(est);
+		String titulo="";
+		
+		switch(est){
+		case 0: titulo="Registro de Entrada"; break;
+		case 1: titulo="Registro de Ingreso al Refrigerio"; break;
+		case 2: titulo="Registro de Salida del Refrigerio"; break;
+		case 3: titulo="Registro de Salida"; break;
+		}
+		
+		
+		request.setAttribute("titulo", titulo);
+		request.setAttribute("estadoOpcion", est);
+		request.setAttribute("empleados", empleados);
+		getServletContext().getRequestDispatcher("/asistencias.jsp").forward(request, response);
+		
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+	
+		
+		PrintWriter out = response.getWriter();
+		DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+		I_Asistencias asistencias=dao.getAsistenciasDAO();
+		int dni=Integer.parseInt(request.getParameter("dni"));
+		
+		int estado=asistencias.obtenerEstado(dni);
+		System.out.println(estado+"Estado ingreso");
+		if(asistencias.registrarAsistenciaEnt(dni,estado)){
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Se registró correctamente la asistencia');");
+			out.println("location='Asistencias?est="+estado+"'");
+			out.println("</script>");	
+		}else{
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Registro fallido, fuera de hora');");
+			out.println("location='Asistencias?est="+estado+"'");
+			out.println("</script>");	
+		}
+		System.out.println(estado+"servlet");
+		
+		
+		
+	}
+
+}
