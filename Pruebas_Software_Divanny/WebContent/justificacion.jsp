@@ -52,7 +52,7 @@
 						
 						if(fechas[0]==null){
 
-							window.location.href ="justificacion.jsp";
+							//window.location.href ="justificacion.jsp";
 							alert("Error: Faltas injustificadas no encontradas");
 						}
 
