@@ -67,7 +67,7 @@ function perfiles(perfil,com){
 		  </div>
 		  <div class="form-group col-xs-6">
         	<label for="pwd">Fijo : </label>
-        	<input type="text" class="form-control" name="contacto" value=""  maxlength="6" onkeypress="return solonumeros(event)" required>
+        	<input type="text" class="form-control" name="contacto" maxlength="7" onkeypress="return solonumeros(event)" required>
      	  </div>     	  
 		  <div class="form-group col-xs-12">
 		    <label for="pwd">Email : </label>

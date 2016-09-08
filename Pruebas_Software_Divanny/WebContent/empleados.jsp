@@ -71,9 +71,6 @@ function buscar(){
 		<div class="col-xs-4 col-xs-offset-2">
 			<button type="button" style="float: right;margin-right: 250px;" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Registrar Empleado</button>
 		</div>
-		<div class="col-xs-4 col-xs-offset-2">
-			<button class="btn btn-default btn-lg" type="button" data-target="#modB" data-toggle="modal"  >Buscar Empleado</button>
-		</div>	
 	</div>
 	<br>
 	<br>

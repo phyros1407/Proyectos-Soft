@@ -7,6 +7,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript" src="./js/jquery.js" charset="UTF-8"></script>
+<script type="text/javascript" src="./js/validaciones.js" charset="UTF-8"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link href="./css/bootstrap.min.css" rel="stylesheet">
 <%
@@ -42,6 +43,7 @@ function fecha(){
 	fecha.setAttribute("max",c);
 	
 }
+
 
 </script>
 </head>
@@ -104,13 +106,13 @@ function fecha(){
 				  <div class="form-group">
 				    <label class="control-label col-xs-3" for="fecha">Fecha :</label>
 				    <div class="col-xs-5">
-				      <input type="date" class="form-control"  id="fecha" name="fecha" max="" required>
+				      <input type="date" class="form-control"  id="dateHor" name="fecha" min="2016-08-01" required>
 				    </div>
 				  </div>
 				  <div class="form-group">
 				  	<label  class="control-label col-xs-3" for="valor">Horas : </label>
 				  	<div class="col-xs-3">
-				  		<input type="text" class="form-control" id="valor"  name="valor" max="2" required placeholder="horas">
+				  		<input type="text" onkeypress="return solonumeros(event)" class="form-control" id="valor"  name="valor" max="2" required placeholder="Cant. de horas">
 				  	</div>
 				  	
 				  </div>
@@ -125,6 +127,21 @@ function fecha(){
     </div>
   </div>
 	
-	
 </body>
+
+<script type="text/javascript">
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+ if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("dateHor").setAttribute("max", today);
+</script>
 </html>
