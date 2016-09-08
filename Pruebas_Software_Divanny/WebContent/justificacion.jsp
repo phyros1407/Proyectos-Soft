@@ -12,12 +12,13 @@
 <script type="text/javascript" src="./js/jquery.js" charset="UTF-8"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link href="./css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="./js/validaciones.js" charset="UTF-8"></script>
 <%String mensaje=(String)request.getAttribute("mensaje"); %>
 <title>Justificacion</title>
 <script type="text/javascript">
 			  var fechas=[];
 			  function cargar(){
-					var dniJ = $('#buscador').val();	
+					var dniJ = $('#txtDNI').val();	
 					var accion=$('#accion').val();
 					$.post('Justificacion',{	
 						dniJ : dniJ,
@@ -50,6 +51,8 @@
 						$('#fechas').html(conta);
 						
 						if(fechas[0]==null){
+
+							window.location.href ="justificacion.jsp";
 							alert("Error: Faltas injustificadas no encontradas");
 						}
 
@@ -170,21 +173,24 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Buscar Empleado</h4>
         </div>
+        <form class="form-horizontal" role="form">
         <div class="modal-body">
-        	 <form class="form-horizontal" role="form">
+        	 
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="buscador">Dni :</label>
 				    <div class="col-sm-5">
-				      <input type="text" class="form-control"  placeholder="Empleado" id="buscador">
+				    <input maxlength="8" pattern=".{8,8}" required title="Ingrese 8 dígitos" id="txtDNI"
+								onkeypress="return solonumeros(event)" name="txtDNI" data-required="1" class="form-control">
 				    </div>
 				  </div>
-			</form>
+			
         </div>
         <div class="modal-footer">
           <button class="btn btn-default btn-primary" type="button" data-target="#myModal" data-toggle="modal" onclick="cargar();" >Buscar Empleado</button>
           <input id="accion" type="hidden" name="accion" value="buscar">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>          
         </div>
+        </form>
       </div>
     </div>
   </div>
