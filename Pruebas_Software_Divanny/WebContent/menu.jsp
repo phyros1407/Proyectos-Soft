@@ -15,15 +15,18 @@ EmpleadoBean usuario=(EmpleadoBean) session.getAttribute("sesion");%>
 </head>
 <body>
 <div class="container">
-<div style="display:flex;align-items:center;width:100%;height:215px;">
-  <div><img style="margin-left: 24%;margin-top: 20px;margin-right: 150px;padding-right: 100px;" src="images/logoDiv.png"></div>
-  <div class="box effect8" >
-	<h3><%=usuario.getPerfilD() %> :<br><%=usuario.getNombre()%> <%=usuario.getApellido() %></h3>
-	
-	<a href="Sistema">Cerrar Sesión</a>
-	</div>
+<div  class="col-xs-12 col-md-12 col-xs-offset-2" style="margin-top:30px;margin-bottom:30px;">
+ <div class=" col-xs-6 col-md-6" >
+  	<img class="img-responsive"  src="images/logoDiv.png">
+  </div>
+  <div class=" col-xs-6 col-md-6" >
+  	<div style="margin-top:45px;margin-left:60px;">
+	  	<h3><%=usuario.getPerfilD() %> :<br><%=usuario.getNombre()%> <%=usuario.getApellido() %></h3>
+		<a href="Sistema">Cerrar Sesión</a>
+  	</div>
+  </div>
 </div>
-<br>
+
 <div id="menunobu0" style="margin-left: 180px;">
         <ul> 
         
@@ -67,6 +70,8 @@ EmpleadoBean usuario=(EmpleadoBean) session.getAttribute("sesion");%>
         
         </ul>
 </div>
+
+
 </div>
 <br>
 <br>
