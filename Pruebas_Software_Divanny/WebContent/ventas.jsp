@@ -121,7 +121,7 @@ function fecha(){
 				  <div class="form-group">
 				  	<label  class="control-label col-xs-3" for="valor">Val Vend.</label>
 				  	<div class="col-xs-5">
-				  		<input type="text" class="form-control" id="valor"  name="valor" onkeypress="return solonumeros(event)" required>
+				  		<input type="text" class="form-control" id="valor"  name="valor" onkeypress=" return NumCheck(event,this);" required>
 				  	</div>
 				  </div>
 			</form>
