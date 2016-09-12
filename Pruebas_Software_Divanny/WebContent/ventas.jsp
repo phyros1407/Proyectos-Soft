@@ -6,7 +6,7 @@
 <html lang="es">
 <head >
 <title>Ventas</title>
-
+<%EmpleadoBean usuario=(EmpleadoBean) session.getAttribute("sesion");%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript" src="./js/jquery.js" charset="UTF-8"></script>
 <script type="text/javascript" src="./js/validaciones.js" charset="UTF-8"></script>
@@ -55,7 +55,11 @@ function fecha(){
 </script>
 </head>
 <body style="background-color: #f7f7f7;">
+
+
+
 <jsp:include page="menu.jsp"><jsp:param name="m" value="1" /></jsp:include>
+<%if(usuario.getPerfilD().equalsIgnoreCase("Administrador")){%>
 	<div class="container">
 	<p align="center" style="font-size: 30px;"> Registrar Ventas </p>
 		<div class="row">
@@ -134,7 +138,10 @@ function fecha(){
       </div>
     </div>
   </div>
-	
+
+<%}else{ %>
+	<jsp:include page="error.jsp"></jsp:include>
+<%} %>	
 </body>
 <script type="text/javascript">
 var today = new Date();

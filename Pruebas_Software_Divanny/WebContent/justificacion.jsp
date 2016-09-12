@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<%EmpleadoBean usuario=(EmpleadoBean) session.getAttribute("sesion");%>
 <meta charset="utf-8" http-equiv="Content-Type"  content="text/html; charset=ISO-8859-1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript" src="./js/jquery.js" charset="UTF-8"></script>
@@ -17,7 +18,12 @@
 <title>Justificacion</title>
 </head>
 <body style="background-color: #f7f7f7;">
+
+
+
+
 	<jsp:include page="menu.jsp"><jsp:param name="m" value="1" /></jsp:include>
+	<%if(usuario.getPerfilD().equalsIgnoreCase("Secretaria")){ %>
 	<div class="container">
 		<div class="col-xs-12 col-md-12 col-xs-offset-3 col-md-offset-3">
 		<%if(mensaje!=null){ %>
@@ -119,10 +125,7 @@
 				  		</div>
 				  	</div>
 				  </form>
-			 </div>
-			
-			  	
-		
+			 </div>		
 	</div>
 	
 <!-- Modal -->
@@ -153,6 +156,8 @@
     </div>
   </div>
 
- 
+<%}else{ %>
+ <jsp:include page="error.jsp"></jsp:include>
+ <%} %>
 </body>
 </html>

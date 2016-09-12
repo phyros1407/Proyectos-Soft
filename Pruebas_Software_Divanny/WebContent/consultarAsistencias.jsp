@@ -5,6 +5,7 @@
 <!doctype html>
 <html lang="es">
 <head>
+<%EmpleadoBean usuario=(EmpleadoBean) session.getAttribute("sesion");%>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0"> 
 
@@ -22,6 +23,10 @@
 <jsp:include page="menu.jsp"><jsp:param name="m" value="3" /></jsp:include>
 </head>
 <body style="background-color: #f7f7f7;">
+
+<%if(usuario.getPerfilD().equalsIgnoreCase("Contador")){ %>
+<jsp:include page="error.jsp"></jsp:include>
+<%}else{ %>
 <div class="container">
 
 <p align="center" style="font-size: 30px;"> Consulta de Asistencias</p>
@@ -59,6 +64,6 @@
         });
     });
     </script>
-    
+<%} %>    
 </body>
 </html>

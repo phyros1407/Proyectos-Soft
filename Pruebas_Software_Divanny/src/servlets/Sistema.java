@@ -69,8 +69,9 @@ public class Sistema extends HttpServlet {
 				   out.println("location='login.jsp';");
 				   out.println("</script>");
 			}else{
+				System.out.println("inicio");
 			sesion.setAttribute("sesion", empleados);
-			response.sendRedirect("Asistencias?est=0");
+			response.sendRedirect("inicio.jsp");
 			}
 		}	
 		

@@ -125,6 +125,9 @@ import dao.interfaces.I_Justificacion;
     			asiJ.setId(id);
     			
     			System.out.println("llegue hasta aca");
+    			response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+    	        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+    	        response.setDateHeader("Expires", 0); // Proxies.
     			if(justi.actualizarEstadoAsistencia(asiJ)){
     				if(justi.registrarJustificacion(just)){
     					

@@ -3,6 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <html lang="es">
 <head >
+<%EmpleadoBean usuario=(EmpleadoBean) session.getAttribute("sesion");%>
 <title>Horas Extra</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -48,7 +49,11 @@ function fecha(){
 </script>
 </head>
 <body style="background-color: #f7f7f7;">
+
+
+
 <jsp:include page="menu.jsp"><jsp:param name="m" value="1" /></jsp:include>
+<%if(usuario.getPerfilD().equalsIgnoreCase("Administrador")){ %>
 	<div class="container">
 	<p align="center" style="font-size: 30px;"> Registrar Horas Extra</p>
 		<div class="row">
@@ -126,7 +131,10 @@ function fecha(){
       </div>
     </div>
   </div>
-	
+<%}else{ %>
+<jsp:include page="error.jsp"></jsp:include>
+
+<%} %>	
 </body>
 
 <script type="text/javascript">

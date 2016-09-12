@@ -48,7 +48,9 @@ public class Parametros extends HttpServlet {
 			   out.println("</script>");
 		}else{
 		request.setAttribute("parametros", parametros);
-		
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+        response.setDateHeader("Expires", 0); // Proxies.
 		getServletContext().getRequestDispatcher("/actualizarParametros.jsp").forward(request, response);
 		}
 	}
@@ -65,7 +67,9 @@ public class Parametros extends HttpServlet {
 		
 		DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 		I_Parametro parametro=dao.getParametroDAO();
-				
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+        response.setDateHeader("Expires", 0); // Proxies.		
 		if(parametro.actualizarParametros(1,pSeguro1)&&parametro.actualizarParametros(2,pSeguro2)&&parametro.actualizarParametros(3,pSeguro3)){
 			out.println("<script type=\"text/javascript\">");
 			   out.println("alert('Actualización exitosa');");

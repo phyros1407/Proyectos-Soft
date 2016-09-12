@@ -46,6 +46,9 @@ public class Empleado extends HttpServlet {
 			ArrayList<EmpleadoBean> empleados=empleadodao.listar();
 			
 			request.setAttribute("empleados", empleados);
+			response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+	        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+	        response.setDateHeader("Expires", 0); // Proxies.
 			getServletContext().getRequestDispatcher("/empleados.jsp").forward(request, response);
 		}
 		
@@ -175,6 +178,9 @@ public class Empleado extends HttpServlet {
 					det.setSueldo(sueldo);
 					det.setSeg_med(medico);
 					det.setAfp(seguro);
+					response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+			        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+			        response.setDateHeader("Expires", 0); // Proxies.
 					if(empleadodao.registrarDet(det)){
 						System.out.println("YA GRABO EN T_DETALLE_PAGO");
 						if(perfil.equals("4")){
@@ -214,6 +220,9 @@ public class Empleado extends HttpServlet {
 			if(emp.eliminarEmpleado(dni)){
 				request.setAttribute("empleados", emp.listar());
 				request.setAttribute("mensaje", "Empleado eliminado correctamente");
+				response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+		        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+		        response.setDateHeader("Expires", 0); // Proxies.
 				getServletContext().getRequestDispatcher("/empleados.jsp").forward(request,response);
 			}
 		}

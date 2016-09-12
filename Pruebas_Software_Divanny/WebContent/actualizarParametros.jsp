@@ -6,6 +6,7 @@
 <!doctype html>
 <html lang="es">
 <head>
+<%EmpleadoBean usuario=(EmpleadoBean) session.getAttribute("sesion");%>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0"> 
 
@@ -43,6 +44,7 @@ function cancelar(){
 <jsp:include page="menu.jsp"><jsp:param name="m" value="2" /></jsp:include>
 </head>
 <body style="background-color: #f7f7f7;">
+<%if(usuario.getPerfilD().equalsIgnoreCase("Contador")){ %>
 <% if(parametros!=null){%>
 <div class="center">
 
@@ -57,6 +59,8 @@ function cancelar(){
 </form>
 <%} %>
 </div>
-
+<%}else{ %>
+<jsp:include page="error.jsp"></jsp:include>
+<% }%>
 </body>
 </html>

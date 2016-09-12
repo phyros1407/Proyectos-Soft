@@ -5,6 +5,8 @@
 <!doctype html>
 <html lang="es">
 <head>
+
+<%EmpleadoBean usuario=(EmpleadoBean) session.getAttribute("sesion");%>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0"> 
 
@@ -23,6 +25,8 @@
 
 </head>
 <body style="background-color: #f7f7f7;">
+<%if(usuario.getPerfilD().equalsIgnoreCase("Secretaria")) {%>
+
 <% if(empleados!=null){
 	String titulo=(String) request.getAttribute("titulo");	
    int est=(Integer) request.getAttribute("estadoOpcion");%>
@@ -71,5 +75,9 @@
     </script>
 </div>
 <footer id="footer"></footer>
+
+<%}else{ %>
+<jsp:include page="error.jsp"></jsp:include>
+<%} %>
 </body>
 </html>

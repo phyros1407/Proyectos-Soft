@@ -53,6 +53,9 @@ public class Asistencias extends HttpServlet {
 		request.setAttribute("titulo", titulo);
 		request.setAttribute("estadoOpcion", est);
 		request.setAttribute("empleados", empleados);
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+        response.setDateHeader("Expires", 0); // Proxies.
 		getServletContext().getRequestDispatcher("/asistencias.jsp").forward(request, response);
 		
 		
@@ -73,6 +76,9 @@ public class Asistencias extends HttpServlet {
 		
 		int estado=asistencias.obtenerEstado(dni);
 		System.out.println(estado+"Estado ingreso");
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+        response.setDateHeader("Expires", 0); // Proxies.
 		if(asistencias.registrarAsistenciaEnt(dni,estado)){
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Se registró correctamente la asistencia');");

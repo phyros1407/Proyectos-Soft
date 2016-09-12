@@ -43,6 +43,9 @@ public class ConsultarAsistencias extends HttpServlet {
 		empleados=asistencias.listarEmpleados(0);
 		
 		request.setAttribute("empleados", empleados);
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+        response.setDateHeader("Expires", 0); // Proxies.
 		getServletContext().getRequestDispatcher("/consultarAsistencias.jsp").forward(request, response);
 		
 	}
@@ -68,6 +71,9 @@ public class ConsultarAsistencias extends HttpServlet {
 		}else{
 		request.setAttribute("nombreC",nombreC);
 		request.setAttribute("asistencia", asistencia);
+		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+        response.setDateHeader("Expires", 0); // Proxies.
 		getServletContext().getRequestDispatcher("/consultarAsistenciasP.jsp").forward(request, response);
 		}
 	}

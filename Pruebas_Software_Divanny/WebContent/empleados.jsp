@@ -4,6 +4,8 @@
 <!doctype html>
 <html lang="es">
 <head>
+<%EmpleadoBean usuario=(EmpleadoBean) session.getAttribute("sesion");%>
+
 <!-- ******************************* PARA MODAL ******************************* -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script type="text/javascript" src="./js/jquery.js" charset="UTF-8"></script>
@@ -59,12 +61,13 @@ function buscar(){
 	});
 }
 
-
-
 </script>   
 <jsp:include page="menu.jsp"><jsp:param name="m" value="4" /></jsp:include>
 </head>
 <body style="background-color: #f7f7f7;">
+
+<%if(usuario.getPerfilD().equalsIgnoreCase("Administrador")){ %>
+
 
 <div class="container" >
 	<div class="row">
@@ -130,7 +133,10 @@ function buscar(){
 </div>
 <br>
 
+<%}else{ %>
+<jsp:include page="error.jsp"></jsp:include>
 
+<%} %>
 
 </body>
 <!-- Modal -->
