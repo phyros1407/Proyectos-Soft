@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.ContactoBean;
 import beans.CorreoBean;
@@ -38,7 +39,10 @@ public class Empleado extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String accion = request.getParameter("accion");
-		
+		HttpSession sesion=request.getSession();
+		if(sesion.getAttribute("sesion")==null){
+			response.sendRedirect("login.jsp");
+		}else{
 		if(accion.equalsIgnoreCase("listar")){
 			DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 			I_Empleado empleadodao=dao.getEmpleadoDAO();
@@ -51,7 +55,7 @@ public class Empleado extends HttpServlet {
 	        response.setDateHeader("Expires", 0); // Proxies.
 			getServletContext().getRequestDispatcher("/empleados.jsp").forward(request, response);
 		}
-		
+		}
 		
 	}
 
@@ -61,7 +65,10 @@ public class Empleado extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String accion = request.getParameter("accion");
-		
+		HttpSession sesion=request.getSession();
+		if(sesion.getAttribute("sesion")==null){
+			response.sendRedirect("login.jsp");
+		}else{
 		
 		if(accion.equalsIgnoreCase("registrar")){
 			//REGISTRAR
@@ -229,4 +236,5 @@ public class Empleado extends HttpServlet {
 		
 	}
 
+	}
 }

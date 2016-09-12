@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.EmpleadoBean;
 import beans.ObreroBean;
@@ -36,6 +37,11 @@ public class Tipo_Empleado extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		HttpSession sesion=request.getSession();
+		if(sesion.getAttribute("sesion")==null){
+			response.sendRedirect("login.jsp");
+		}else{
+		
 		int tipo=Integer.parseInt(request.getParameter("tipo"));
 		
 		DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
@@ -54,6 +60,7 @@ public class Tipo_Empleado extends HttpServlet {
 			request.setAttribute("mensaje", "Lista de Trabajadores no disponible");
 			getServletContext().getRequestDispatcher("/ventas.jsp").forward(request, response);
 		}
+		}
 	}
 
 	/**
@@ -61,6 +68,10 @@ public class Tipo_Empleado extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession sesion=request.getSession();
+		if(sesion.getAttribute("sesion")==null){
+			response.sendRedirect("login.jsp");
+		}else{
 		String accion=request.getParameter("accion");
 		
 		if(accion.equalsIgnoreCase("venta")){
@@ -120,6 +131,7 @@ public class Tipo_Empleado extends HttpServlet {
 			}
 
 		}
+	}
 	}
 
 }

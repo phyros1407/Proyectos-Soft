@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.AsistenciasBean;
 import beans.EmpleadoBean;
@@ -35,7 +36,10 @@ public class ConsultarAsistencias extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		HttpSession sesion=request.getSession();
+		if(sesion.getAttribute("sesion")==null){
+			response.sendRedirect("login.jsp");
+		}else{
 		DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 		I_Asistencias asistencias=dao.getAsistenciasDAO();
 		ArrayList<EmpleadoBean> empleados= new ArrayList<EmpleadoBean>();
@@ -47,7 +51,7 @@ public class ConsultarAsistencias extends HttpServlet {
         response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
         response.setDateHeader("Expires", 0); // Proxies.
 		getServletContext().getRequestDispatcher("/consultarAsistencias.jsp").forward(request, response);
-		
+		}
 	}
 
 	/**
@@ -55,6 +59,10 @@ public class ConsultarAsistencias extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession sesion=request.getSession();
+		if(sesion.getAttribute("sesion")==null){
+			response.sendRedirect("login.jsp");
+		}else{
 		PrintWriter out = response.getWriter();
 		int dni=Integer.parseInt(request.getParameter("dni"));
 		String nombreC=request.getParameter("nombreC");
@@ -76,6 +84,7 @@ public class ConsultarAsistencias extends HttpServlet {
         response.setDateHeader("Expires", 0); // Proxies.
 		getServletContext().getRequestDispatcher("/consultarAsistenciasP.jsp").forward(request, response);
 		}
+	}
 	}
 
 }

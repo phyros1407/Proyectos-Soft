@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 import beans.ParametrosBean;
@@ -35,7 +36,11 @@ public class Parametros extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
+    	HttpSession sesion=request.getSession();
+		if(sesion.getAttribute("sesion")==null){
+			response.sendRedirect("login.jsp");
+		}else{
+    	PrintWriter out = response.getWriter();
 		DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 		I_Parametro parametro=dao.getParametroDAO();
 		ArrayList<ParametrosBean> parametros=new ArrayList<ParametrosBean>();
@@ -53,6 +58,7 @@ public class Parametros extends HttpServlet {
         response.setDateHeader("Expires", 0); // Proxies.
 		getServletContext().getRequestDispatcher("/actualizarParametros.jsp").forward(request, response);
 		}
+		}
 	}
 
 	/**
@@ -60,6 +66,10 @@ public class Parametros extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession sesion=request.getSession();
+		if(sesion.getAttribute("sesion")==null){
+			response.sendRedirect("login.jsp");
+		}else{
 		PrintWriter out = response.getWriter();
 		double pSeguro1=Double.parseDouble(request.getParameter("seguro1"));
 		double pSeguro2=Double.parseDouble(request.getParameter("seguro2"));
@@ -80,6 +90,7 @@ public class Parametros extends HttpServlet {
 			   out.println("alert('No se logró guardar el nuevo porcentaje, inténtelo de nuevo luego');");
 			   out.println("location='Parametros';");
 			   out.println("</script>");	
+		}
 		}
 	}
 

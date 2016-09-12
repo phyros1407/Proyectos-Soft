@@ -9,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.Session;
 
 import beans.EmpleadoBean;
 import dao.factory.DAOFactory;
@@ -35,6 +38,11 @@ public class Asistencias extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		HttpSession sesion=request.getSession();
+		if(sesion.getAttribute("sesion")==null){
+			response.sendRedirect("login.jsp");
+		}else{
+		
 		DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 		I_Asistencias asistencias=dao.getAsistenciasDAO();
 		int est=Integer.parseInt((request.getParameter("est")));
@@ -57,7 +65,7 @@ public class Asistencias extends HttpServlet {
         response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
         response.setDateHeader("Expires", 0); // Proxies.
 		getServletContext().getRequestDispatcher("/asistencias.jsp").forward(request, response);
-		
+		}
 		
 	}
 
@@ -68,7 +76,10 @@ public class Asistencias extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 	
-		
+		HttpSession sesion=request.getSession();
+		if(sesion.getAttribute("sesion")==null){
+			response.sendRedirect("login.jsp");
+		}else{
 		PrintWriter out = response.getWriter();
 		DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 		I_Asistencias asistencias=dao.getAsistenciasDAO();
@@ -91,7 +102,7 @@ public class Asistencias extends HttpServlet {
 			out.println("</script>");	
 		}
 		System.out.println(estado+"servlet");
-		
+		}
 		
 		
 	}

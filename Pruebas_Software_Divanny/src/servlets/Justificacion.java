@@ -9,8 +9,8 @@
     import javax.servlet.http.HttpServlet;
     import javax.servlet.http.HttpServletRequest;
     import javax.servlet.http.HttpServletResponse;
-
-    import javax.servlet.http.Part;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
     import com.google.gson.Gson;
 
@@ -54,6 +54,12 @@ import dao.interfaces.I_Justificacion;
     	 */
     	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     		// TODO Auto-generated method stub
+    		
+    		HttpSession sesion=request.getSession();
+    		if(sesion.getAttribute("sesion")==null){
+    			response.sendRedirect("login.jsp");
+    		}else{
+    		
     		String accion=request.getParameter("accion");
     		
     		//PARA REGISTRAR UNA JUSTIFICACION
@@ -155,7 +161,7 @@ import dao.interfaces.I_Justificacion;
     			
     		}
     		
-    		
+    		}
     		
     	}
 
