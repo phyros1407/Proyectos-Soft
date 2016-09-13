@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.EmpleadoBean;
+import beans.PlanillaBean;
 import dao.factory.DAOFactory;
 import dao.interfaces.I_Asistencias;
 import dao.interfaces.I_Empleado;
@@ -83,7 +85,17 @@ public class PagosPlanilla extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		int mes=Integer.parseInt(request.getParameter("selMes")); 
+		int ano=Integer.parseInt(request.getParameter("selAno"));
 		
+		DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+		I_PagosPlanilla pagosPlanilla=dao.getPagosPlanillaDAO();
+		ArrayList<PlanillaBean> pago=new ArrayList<PlanillaBean>() ;
+		
+		pago=pagosPlanilla.listarPlanilla(mes, ano);
+		
+		request.setAttribute("pago", pago);
+		getServletContext().getRequestDispatcher("/planillaMensual.jsp").forward(request, response);
 		
 	}
 

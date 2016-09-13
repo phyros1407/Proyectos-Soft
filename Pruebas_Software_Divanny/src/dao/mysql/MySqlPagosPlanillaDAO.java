@@ -3,7 +3,11 @@ package dao.mysql;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Vector;
 
+import beans.EmpleadoBean;
+import beans.PlanillaBean;
 import dao.factory.MySqlDAOFactory;
 import dao.interfaces.I_PagosPlanilla;
 
@@ -201,4 +205,43 @@ public class MySqlPagosPlanillaDAO extends MySqlDAOFactory implements I_PagosPla
 	return false;
 	
 }
+
+	@Override
+	public ArrayList<PlanillaBean> listarPlanilla(int mes, int ano) {
+		// TODO Auto-generated method stub
+		ArrayList<PlanillaBean> planillas=new ArrayList<PlanillaBean>();
+		PlanillaBean planilla;
+		String fromA="";
+		String exQuery="";
+		try{
+			Connection conexion=MySqlDAOFactory.obtenerConexion();
+			Statement stmt=conexion.createStatement();
+			ResultSet rs=stmt.executeQuery("SELECT * FROM t_planilla where mes="+mes+" and ano="+ano+";");
+			
+			if (!rs.isBeforeFirst()){
+				planillas=null;
+			}else{
+				while(rs.next()){
+				planilla=new PlanillaBean();
+				planilla.setDni(Integer.parseInt(rs.getString("dni_trab")));
+				planilla.setMes(Integer.parseInt(rs.getString("mes")));
+				planilla.setAno(Integer.parseInt(rs.getString("ano")));
+				planilla.setSueldo(Double.parseDouble(rs.getString("sueldo")));
+				planilla.setAumento(Double.parseDouble(rs.getString("aumento")));
+				planilla.setDescuento(Double.parseDouble(rs.getString("descuento")));
+				planilla.setSeguroVida(Double.parseDouble(rs.getString("seguroVida")));
+				planilla.setSeguroSalud(Double.parseDouble(rs.getString("seguroSalud")));
+				planilla.setSueldoNeto(Double.parseDouble(rs.getString("sueldoNeto")));
+				planillas.add(planilla);
+				}
+				return planillas;
+			}
+			conexion.close();
+			
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		
+		return planillas;
+	}
 }

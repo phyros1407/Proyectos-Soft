@@ -54,8 +54,7 @@ EmpleadoBean usuario=(EmpleadoBean) session.getAttribute("sesion");%>
         <li><a href="#" class="menunobu<%=y%>">Consultar</a>
         
         <ul> <%if(usuario.getPerfilD().equalsIgnoreCase("Contador")){ %>
-        <li><a href="#" >Planillas Semanales</a></li> 
-        <li><a href="#">Planillas Mensuales</a></li><%} %>
+        <li><a href="planillaMensual.jsp">Planillas Mensuales</a></li><%} %>
         <%if(usuario.getPerfilD().equalsIgnoreCase("Administrador")||usuario.getPerfilD().equalsIgnoreCase("Secretaria")){ %>
         <li><a href="ConsultarAsistencias">Asistencias</a></li><%} %>
         </ul>
