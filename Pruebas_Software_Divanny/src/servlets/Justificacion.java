@@ -63,7 +63,7 @@ import dao.interfaces.I_Justificacion;
     		String accion=request.getParameter("accion");
     		
     		//PARA REGISTRAR UNA JUSTIFICACION
-    		if(accion.equalsIgnoreCase("buscar")){
+    		if(accion.equalsIgnoreCase("buscarE")){
     			System.out.println("Entro al buscar");
     			String dniJ=request.getParameter("dniJ");
     			

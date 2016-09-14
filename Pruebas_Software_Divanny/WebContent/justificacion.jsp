@@ -148,7 +148,7 @@
         </div>
         <div class="modal-footer">
           <button class="btn btn-default btn-primary" type="button" data-target="#myModal" data-toggle="modal" onclick="cargar();" >Buscar Empleado</button>
-          <input id="accion" type="hidden" name="accion" value="buscar">
+          <input id="accion" type="hidden" name="accion" value="buscarE">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>          
         </div>
         </form>
