@@ -141,7 +141,7 @@
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="buscador">Dni :</label>
 				    <div class="col-sm-5">
-				    <input maxlength="8" pattern=".{8,8}" required title="Ingrese 8 dígitos" id="txtDNI"
+				    <input maxlength="8" pattern=".{8}" required title="Ingrese 8 dígitos" id="txtDNI"
 								onkeypress="return solonumeros(event)" name="txtDNI" data-required="1" class="form-control" >
 				    </div>
 				  </div>

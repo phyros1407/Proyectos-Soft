@@ -123,8 +123,14 @@ function buscar(){
 				<%}else{%>
 				<td>VENDEDOR</td>
 				<% }%>
-				<td><%=empleados.get(i).getEstado() %></td>
-				<td><a href="" data-toggle="modal" data-id="<%=empleados.get(i).getDni() %>" data-target="#modE">ELIMINAR</a></td>
+				<%if(empleados.get(i).getEstado().equalsIgnoreCase("A")){ %>
+					<td>ACTIVO</td>
+					<td><a href="" data-toggle="modal" data-id="<%=empleados.get(i).getDni() %>" data-target="#modE">ELIMINAR</a></td>
+				<%}else{ %>
+					<td>INACTIVO</td>
+					<td>ELIMINADO</td>
+				<%} %>
+				
 			</tr>
 			<%} %>	
 		</tbody>	
@@ -162,7 +168,7 @@ function buscar(){
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="buscador">Dni :</label>
 				    <div class="col-sm-5">
-				      <input type="text" class="form-control"  placeholder="Empleado" id="buscador">
+				      <input type="text" class="form-control"  placeholder="Empleado" id="buscador" pattern=".{8,8}" required title="Ingrese un dni valido">
 				    </div>
 				  </div>
 			</form>
