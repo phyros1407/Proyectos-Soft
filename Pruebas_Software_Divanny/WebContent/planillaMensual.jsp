@@ -45,7 +45,6 @@
 							<option value="6">Junio</option>
 							<option value="7">Julio</option>
 							<option value="8">Agosto</option>
-							<option value="9">Septiembre</option>
 							</select>
 </div>
 <div class="col-md-3">
