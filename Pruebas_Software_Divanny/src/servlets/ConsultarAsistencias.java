@@ -64,7 +64,7 @@ public class ConsultarAsistencias extends HttpServlet {
 			response.sendRedirect("login.jsp");
 		}else{
 		PrintWriter out = response.getWriter();
-		int dni=Integer.parseInt(request.getParameter("dni"));
+		String dni=request.getParameter("dni");
 		String nombreC=request.getParameter("nombreC");
 		DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 		I_Asistencias asistencias=dao.getAsistenciasDAO();

@@ -38,7 +38,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					 <li>
 						<input type="password" name="contraseña" class="textpas" placeholder="Contraseña" onfocus="this.value = '';"><a href="#" class=" icon lock"></a>
 					</li>
-						<p align="right"><a href="" style="color: #BDBDBD">¿Olvidó su contraseña?</a></p>
 					
 				</ul>
 			</div>			

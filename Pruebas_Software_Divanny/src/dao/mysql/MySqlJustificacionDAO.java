@@ -47,13 +47,13 @@ public class MySqlJustificacionDAO extends MySqlDAOFactory implements I_Justific
 			Connection conexion=MySqlDAOFactory.obtenerConexion();
 			Statement stmt=conexion.createStatement();
 			
-			String query="select * from t_trabajador where dni="+codigo;
+			String query="select * from t_trabajador where dni='"+codigo+"'";
 			ResultSet rs=stmt.executeQuery(query);
 			
 			while(rs.next()){
 				System.out.println("llenando empleado");
 				empleado=new EmpleadoBean();
-				empleado.setDni(rs.getInt("dni"));
+				empleado.setDni(rs.getString("dni"));
 				empleado.setNombre(rs.getString("nombre"));
 				empleado.setApellido(rs.getString("apellido"));
 				empleado.setResidencia(rs.getString("residencia"));

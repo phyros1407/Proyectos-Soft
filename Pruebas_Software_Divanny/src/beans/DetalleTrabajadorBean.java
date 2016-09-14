@@ -2,16 +2,16 @@ package beans;
 
 public class DetalleTrabajadorBean{
 	
-	private int dni_trab;
+	private String dni_trab;
 	private double sueldo;
 	private double afp;
 	private double seg_med;
 	private int dias_liq;
 	private int dias_vac;
-	public int getDni_trab() {
+	public String getDni_trab() {
 		return dni_trab;
 	}
-	public void setDni_trab(int dni_trab) {
+	public void setDni_trab(String dni_trab) {
 		this.dni_trab = dni_trab;
 	}
 	public double getSueldo() {

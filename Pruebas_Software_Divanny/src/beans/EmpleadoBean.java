@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class EmpleadoBean {
 
-	private int dni;
+	private String dni;
 	private String nombre;
 	private String apellido;
 	private String residencia;
@@ -32,10 +32,10 @@ public class EmpleadoBean {
 	public void setAestado(int aestado) {
 		this.aestado = aestado;
 	}
-	public int getDni() {
+	public String getDni() {
 		return dni;
 	}
-	public void setDni(int dni) {
+	public void setDni(String dni) {
 		this.dni = dni;
 	}
 	public String getNombre() {

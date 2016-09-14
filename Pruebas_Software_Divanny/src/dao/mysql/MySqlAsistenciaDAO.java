@@ -46,11 +46,11 @@ public class MySqlAsistenciaDAO extends MySqlDAOFactory implements I_Asistencias
 			}else{
 				while(rs.next()){
 				empleado=new EmpleadoBean();
-				empleado.setDni(Integer.parseInt(rs.getString("dni")));
+				empleado.setDni(rs.getString("dni"));
 				empleado.setNombre(rs.getString("nombre"));
 				empleado.setApellido(rs.getString("apellido"));
 				empleado.setPerfilD(rs.getString("perfilDes"));
-				empleado.setAestado(obtenerEstado(Integer.parseInt(rs.getString("dni"))));
+				empleado.setAestado(obtenerEstado(rs.getString("dni")));
 				empleados.add(empleado);
 				}
 				return empleados;
@@ -65,7 +65,7 @@ public class MySqlAsistenciaDAO extends MySqlDAOFactory implements I_Asistencias
 	}
 
 	@Override
-	public boolean registrarAsistenciaEnt(int dni, int estado) {
+	public boolean registrarAsistenciaEnt(String dni, int estado) {
 		// TODO Auto-generated method stub
 		
 		System.out.println(dni);
@@ -88,13 +88,13 @@ public class MySqlAsistenciaDAO extends MySqlDAOFactory implements I_Asistencias
 					System.out.println("No carga datos");
 				}else{
 				while(rs.next()){
-					System.out.println(rs.getInt("dni"));
-					registrarInasistencias(rs.getInt("dni"));
+					System.out.println(rs.getString("dni"));
+					registrarInasistencias(rs.getString("dni"));
 				}
 				System.out.println("Registró inasistencias");}
 			}}
 			
-			int resultado=stmt1.executeUpdate("call registrarAsistencia("+dni+","+estado+")");
+			int resultado=stmt1.executeUpdate("call registrarAsistencia('"+dni+"',"+estado+")");
 			System.out.println(resultado+"Registro asistencia");
 			if(resultado!=0){
 				System.out.println("Debe dar el alert");
@@ -112,13 +112,13 @@ public class MySqlAsistenciaDAO extends MySqlDAOFactory implements I_Asistencias
 	}
 
 	@Override
-	public int obtenerEstado(int dni) {
+	public int obtenerEstado(String dni) {
 		// TODO Auto-generated method stub
 		
 		try{
 			Connection conexion=MySqlDAOFactory.obtenerConexion();
 			Statement stmt=conexion.createStatement();
-			ResultSet rs=stmt.executeQuery("select estadoH from t_asistencias where dni_trab="+dni+" and fecha=curdate();");
+			ResultSet rs=stmt.executeQuery("select estadoH from t_asistencias where dni_trab= '"+dni+"' and fecha=curdate();");
 			if (!rs.isBeforeFirst()){
 				conexion.close();
 				return 0;}
@@ -143,13 +143,13 @@ public class MySqlAsistenciaDAO extends MySqlDAOFactory implements I_Asistencias
 	
 
 	@Override
-	public boolean registrarInasistencias(int dni) {
+	public boolean registrarInasistencias(String dni) {
 		
 		try{
 			Connection conexion=MySqlDAOFactory.obtenerConexion();
 			Statement stmt=conexion.createStatement();	
 			int resultado=stmt.executeUpdate("insert into t_asistencias(fecha,dni_trab,estadoH,estadoD) "
-					+ "values(curdate(),"+dni+",'5','F');");
+					+ "values(curdate(),'"+dni+"','5','F');");
 			if(resultado!=0){
 				System.out.println("Llega al insert Asistencia");
 				return true;
@@ -186,7 +186,7 @@ public class MySqlAsistenciaDAO extends MySqlDAOFactory implements I_Asistencias
 	}
 
 	@Override
-	public ArrayList<AsistenciasBean> listarAsistencias(int dni) {
+	public ArrayList<AsistenciasBean> listarAsistencias(String dni) {
 		// TODO Auto-generated method stub
 		
 		ArrayList<AsistenciasBean> asistencias=new ArrayList<AsistenciasBean>();
@@ -196,7 +196,7 @@ public class MySqlAsistenciaDAO extends MySqlDAOFactory implements I_Asistencias
 			Connection conexion=MySqlDAOFactory.obtenerConexion();
 			Statement stmt=conexion.createStatement();
 			ResultSet rs=stmt.executeQuery("select fecha,horaEnt,horaRef,horaSref,horaSal,estadoD "
-					+ "from t_asistencias where DATE_SUB(curdate(), INTERVAL 1 MONTH) and dni_trab="+dni+";");
+					+ "from t_asistencias where DATE_SUB(curdate(), INTERVAL 1 MONTH) and dni_trab='"+dni+"';");
 			
 			if (!rs.isBeforeFirst()){
 				asistencias=null;

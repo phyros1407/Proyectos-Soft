@@ -14,7 +14,7 @@ import dao.interfaces.I_PagosPlanilla;
 public class MySqlPagosPlanillaDAO extends MySqlDAOFactory implements I_PagosPlanilla  {
 
 	@Override
-	public double obtenerSueldo(int dni) {
+	public double obtenerSueldo(String dni) {
 		// TODO Auto-generated method stub
 		
 		try{
@@ -40,7 +40,7 @@ public class MySqlPagosPlanillaDAO extends MySqlDAOFactory implements I_PagosPla
 	}
 
 	@Override
-	public double aumentarHObreros(int dni) {
+	public double aumentarHObreros(String dni) {
 		// TODO Auto-generated method stub
 		double aumento=0;
 		try{
@@ -70,7 +70,7 @@ public class MySqlPagosPlanillaDAO extends MySqlDAOFactory implements I_PagosPla
 	}
 
 	@Override
-	public double aumentarCVendedor(int dni) {
+	public double aumentarCVendedor(String dni) {
 		// TODO Auto-generated method stub
 
 		double aumento=0;
@@ -100,7 +100,7 @@ public class MySqlPagosPlanillaDAO extends MySqlDAOFactory implements I_PagosPla
 	}
 
 	@Override
-	public double aplicarDescuento(int dni,double sueldo) {
+	public double aplicarDescuento(String dni,double sueldo) {
 		// TODO Auto-generated method stub
 		double descuento=0;
 		try{
@@ -129,7 +129,7 @@ public class MySqlPagosPlanillaDAO extends MySqlDAOFactory implements I_PagosPla
 	}
 
 	@Override
-	public double descontarSeguroVida(int dni,double sueldoR) {
+	public double descontarSeguroVida(String dni,double sueldoR) {
 		// TODO Auto-generated method stub
 		
 		double seguroVida=0;
@@ -158,7 +158,7 @@ public class MySqlPagosPlanillaDAO extends MySqlDAOFactory implements I_PagosPla
 	}
 
 	@Override
-	public double calcularSeguroSalud(int dni,double sueldoR) {
+	public double calcularSeguroSalud(String dni,double sueldoR) {
 		// TODO Auto-generated method stub
 		double seguroSalud=0;
 		try{
@@ -185,7 +185,7 @@ public class MySqlPagosPlanillaDAO extends MySqlDAOFactory implements I_PagosPla
 	}
 
 	@Override
-	public boolean registrarPlanilla(double sueldo, double sueldoR, int dni, double aumento, double descuento,
+	public boolean registrarPlanilla(double sueldo, double sueldoR, String dni, double aumento, double descuento,
 			double seguroV, double seguroS) {
 		// TODO Auto-generated method stub
 		
@@ -223,7 +223,7 @@ public class MySqlPagosPlanillaDAO extends MySqlDAOFactory implements I_PagosPla
 			}else{
 				while(rs.next()){
 				planilla=new PlanillaBean();
-				planilla.setDni(Integer.parseInt(rs.getString("dni_trab")));
+				planilla.setDni(rs.getString("dni_trab"));
 				planilla.setMes(Integer.parseInt(rs.getString("mes")));
 				planilla.setAno(Integer.parseInt(rs.getString("ano")));
 				planilla.setSueldo(Double.parseDouble(rs.getString("sueldo")));

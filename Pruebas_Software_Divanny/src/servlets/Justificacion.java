@@ -120,14 +120,14 @@ import dao.interfaces.I_Justificacion;
     			
     			
     			JustificacionBean just=new JustificacionBean();
-    			just.setDni(Integer.parseInt(dni));
+    			just.setDni(dni);
     			just.setId_asis(id);;
     			just.setComentario(comentario);
     			just.setInput(input);
     			just.setMotivo(motivo);
     			
     			AsistenciasBean asiJ=new AsistenciasBean();
-    			asiJ.setDni_trab(Integer.parseInt(dni));
+    			asiJ.setDni_trab(dni);
     			asiJ.setId(id);
     			
     			System.out.println("llegue hasta aca");

@@ -91,7 +91,7 @@ public class Empleado extends HttpServlet {
 			
 			
 			if(perfil.equalsIgnoreCase("5")){
-				int dni=Integer.parseInt(request.getParameter("dni"));
+				String dni=request.getParameter("dni");
 				String nombre=request.getParameter("nombre");
 				String apellidos=request.getParameter("apellidos");
 				int comision=Integer.parseInt(request.getParameter("comision"));
@@ -162,7 +162,7 @@ public class Empleado extends HttpServlet {
 					
 				}
 			}else{
-				int dni=Integer.parseInt(request.getParameter("dni"));
+				String dni=request.getParameter("dni");
 				String nombre=request.getParameter("nombre");
 				String apellidos=request.getParameter("apellidos");
 				String direccion=request.getParameter("direccion");
@@ -255,6 +255,8 @@ public class Empleado extends HttpServlet {
 			
 		}
 		
+		
+		//ELIMINAR
 		if(accion.equalsIgnoreCase("eliminar")){
 			String dni=request.getParameter("dni");
 			
@@ -277,7 +279,28 @@ public class Empleado extends HttpServlet {
 			}
 		}
 		
+		//RECUPERAR
+		if(accion.equalsIgnoreCase("recuperar")){
+			String dni=request.getParameter("dniRec");
+			
+			
+			I_Empleado emp=dao.getEmpleadoDAO();
+			
+			if(emp.rccuperarEmpleado(dni)){
+				/*request.setAttribute("empleados", emp.listar());
+				request.setAttribute("mensaje", "Empleado eliminado correctamente");
+				response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+		        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+		        response.setDateHeader("Expires", 0); // Proxies.
+				getServletContext().getRequestDispatcher("/empleados.jsp").forward(request,response);*/
+				
+				System.out.println("se llego hasta aqui");
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('Se recupero al empleado');");
+				out.println("location='Empleado'");
+				out.println("</script>");
+			}
+		}	
 	}
-
-	}
+}
 }

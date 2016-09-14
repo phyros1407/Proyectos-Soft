@@ -46,7 +46,15 @@ $(document).ready(function (e) {
 		$(e.currentTarget).find('#dni').val(id); 
 		}); 
 	});
-//BUSCAR
+	
+	
+$(document).ready(function (e) { 
+	$('#modE2').on('show.bs.modal', function(e) { 
+		var id = $(e.relatedTarget).data().idrec; 
+		$(e.currentTarget).find('#dniRec').val(id); 
+		}); 
+	});
+W
 
 
 
@@ -112,12 +120,17 @@ $(document).ready(function (e) {
 				<%}else{%>
 				<td>VENDEDOR</td>
 				<% }%>
-				<%if(empleados.get(i).getEstado().equalsIgnoreCase("A")){ %>
-					<td>ACTIVO</td>
-					<td><a href="" data-toggle="modal" data-id="<%=empleados.get(i).getDni() %>" data-target="#modE">ELIMINAR</a></td>
+				<%if(empleados.get(i).getEstado().equalsIgnoreCase("A")){ 
+					if(empleados.get(i).getDni().equalsIgnoreCase(usuario.getDni())){%>
+						<td>ACTIVO</td>
+						<td><a href="" data-toggle="modal" data-id="<%=empleados.get(i).getDni() %>" data-target="#modE" >ELIMINAR</a></td>
+					<%}else{ %>
+						<td>ACTIVO</td>
+						<td><a href="" data-toggle="modal" data-id="<%=empleados.get(i).getDni() %>" data-target="#modE">ELIMINAR</a></td>
+					<%} %>
 				<%}else{ %>
 					<td>INACTIVO</td>
-					<td>ELIMINADO</td>
+					<td><a href="" data-toggle="modal" data-idrec="<%=empleados.get(i).getDni() %>" data-target="#modE2">RECUPERAR</a></td>
 				<%} %>
 				
 			</tr>
@@ -194,6 +207,31 @@ $(document).ready(function (e) {
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="modE2" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Recuperar Empleado</h4>
+        </div>
+        <div class="modal-body">
+        	 <form class="form-horizontal" role="form">
+				  <p>¿ Esta Seguro que desea Recuperar este Empleado ? </p>
+			</form>
+        </div>
+        <div class="modal-footer">
+        <form action="Empleado" method="post">
+        <button class="btn btn-default btn-primary" type="submit">Recuperar Empleado</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <input id="accion" type="hidden" name="accion" value="recuperar">
+          <input id="dniRec" name="dniRec" type="hidden">
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 
 <!-- Js vinculados -->

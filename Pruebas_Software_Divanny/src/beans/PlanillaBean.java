@@ -2,7 +2,7 @@ package beans;
 
 public class PlanillaBean {
 
-	private int dni;
+	private String dni;
 	private int mes;
 	private int ano;
 	private double sueldo;
@@ -11,10 +11,10 @@ public class PlanillaBean {
 	private double seguroSalud;
 	private double seguroVida;
 	private double sueldoNeto;
-	public int getDni() {
+	public String getDni() {
 		return dni;
 	}
-	public void setDni(int dni) {
+	public void setDni(String dni) {
 		this.dni = dni;
 	}
 	public int getMes() {

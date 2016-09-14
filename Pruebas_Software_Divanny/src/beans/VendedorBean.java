@@ -2,15 +2,15 @@ package beans;
 
 public class VendedorBean {
 
-	private int dni_trab;
+	private String dni_trab;
 	private double porcentaje;
 	private double ventas;
 	private String dia;
 	
-	public int getDni_trab() {
+	public String getDni_trab() {
 		return dni_trab;
 	}
-	public void setDni_trab(int dni_trab) {
+	public void setDni_trab(String dni_trab) {
 		this.dni_trab = dni_trab;
 	}
 	public double getPorcentaje() {

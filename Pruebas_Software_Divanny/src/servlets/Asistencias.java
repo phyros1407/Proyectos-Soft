@@ -83,7 +83,7 @@ public class Asistencias extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 		I_Asistencias asistencias=dao.getAsistenciasDAO();
-		int dni=Integer.parseInt(request.getParameter("dni"));
+		String dni=request.getParameter("dni");
 		
 		int estado=asistencias.obtenerEstado(dni);
 		System.out.println(estado+"Estado ingreso");

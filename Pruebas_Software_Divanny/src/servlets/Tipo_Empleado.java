@@ -76,7 +76,7 @@ public class Tipo_Empleado extends HttpServlet {
 		
 		if(accion.equalsIgnoreCase("venta")){
 			
-			int dni=Integer.parseInt(request.getParameter("dni"));
+			String dni=request.getParameter("dni");
 			System.out.println(dni);
 			double valor=Double.parseDouble(request.getParameter("valor"));
 			System.out.println(valor);
@@ -104,7 +104,7 @@ public class Tipo_Empleado extends HttpServlet {
 		
 		if(accion.equalsIgnoreCase("hor")){
 			
-			int dni=Integer.parseInt(request.getParameter("dni"));
+			String dni=request.getParameter("dni");
 			System.out.println(dni);
 			double horas=Double.parseDouble(request.getParameter("valor"));
 			System.out.println(horas);

@@ -15,7 +15,7 @@ public interface I_Empleado {
 		public boolean registrarDet(DetalleTrabajadorBean det);
 		public boolean guardarCon(ContactoBean contacto);
 		public boolean guardarCorreo(CorreoBean correo);
-		public boolean generarUsuario(String nombre,String apellido,int DNI);
+		public boolean generarUsuario(String nombre,String apellido,String dni);
 		public boolean registrarVen(VendedorBean ven);
 		
 		//LISTAR
@@ -29,6 +29,8 @@ public interface I_Empleado {
 		public boolean guardarHor(ObreroBean obrero);
 		public EmpleadoBean buscar(String dni);
 		public boolean eliminarEmpleado(String dni);
+		public boolean rccuperarEmpleado(String dni);
+		
 		
 		public boolean comprobarExistencia(String dni);
 	

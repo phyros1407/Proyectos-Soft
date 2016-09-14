@@ -27,7 +27,7 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 		Connection conexion=MySqlDAOFactory.obtenerConexion();
 		Statement stmt=conexion.createStatement();
 		
-		int filas1=stmt.executeUpdate("insert into t_trabajador values('"+empleado.getDni()+"','"+empleado.getNombre()+"','"+empleado.getApellido()+"','"+empleado.getResidencia()+"','"+empleado.getPerfil()+"','A','"+empleado.getSexo()+"');");
+		int filas1=stmt.executeUpdate("insert into t_trabajador values('"+empleado.getDni()+"','"+empleado.getNombre().toUpperCase()+"','"+empleado.getApellido().toUpperCase()+"','"+empleado.getResidencia().toUpperCase()+"','"+empleado.getPerfil()+"','A','"+empleado.getSexo()+"');");
 		if(filas1==1){
 			return true;
 		}
@@ -110,7 +110,7 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 	
 	
 	
-	public boolean generarUsuario(String nombre,String apellido,int DNI){
+	public boolean generarUsuario(String nombre,String apellido,String DNI){
 		try{
 			Connection conexion=MySqlDAOFactory.obtenerConexion();
 			Statement stmt=conexion.createStatement();
@@ -159,7 +159,7 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 			}else{
 				while(rs.next()){
 					empleado=new EmpleadoBean();
-					empleado.setDni(Integer.parseInt(rs.getString("dni")));
+					empleado.setDni(rs.getString("dni"));
 					empleado.setNombre(rs.getString("nombre"));
 					empleado.setApellido(rs.getString("apellido"));
 					empleado.setPerfilD(obtenerPerfil(Integer.parseInt(rs.getString("perfil"))));
@@ -218,7 +218,7 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 			EmpleadoBean empleado=null;
 			while(rs.next()){
 				empleado=new EmpleadoBean();
-				empleado.setDni(rs.getInt("dni"));
+				empleado.setDni(rs.getString("dni"));
 				empleado.setNombre(rs.getString("nombre"));
 				empleado.setApellido(rs.getString("apellido"));
 				empleados.add(empleado);
@@ -307,7 +307,7 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 			EmpleadoBean empleado=null;
 			while(rs.next()){
 				empleado=new EmpleadoBean();
-				empleado.setDni(rs.getInt("dni"));
+				empleado.setDni(rs.getString("dni"));
 				empleado.setNombre(rs.getString("nombre"));
 				empleado.setApellido(rs.getString("apellido"));
 				empleado.setResidencia(rs.getString("residencia"));
@@ -337,7 +337,7 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 			ResultSet rs=stmt.executeQuery("select * from t_trabajador,t_perfil,t_detalle_pago where id_perfil=perfil and  dni = '"+dni+"' ");
 			
 			while(rs.next()){
-				empleado.setDni(rs.getInt("dni"));
+				empleado.setDni(rs.getString("dni"));
 				empleado.setNombre(rs.getString("nombre"));
 				empleado.setApellido(rs.getString("apellido"));
 				empleado.setResidencia(rs.getString("residencia"));
@@ -395,6 +395,25 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 		}
 		return false;
 		
+	}
+
+
+	@Override
+	public boolean rccuperarEmpleado(String dni) {
+		try{
+			Connection conexion=MySqlDAOFactory.obtenerConexion();
+			Statement stmt=conexion.createStatement();
+			
+			int filas=stmt.executeUpdate(" update t_trabajador set estado = 'A' where dni = '"+dni+"' ");
+			
+			if(filas==1){
+				return true;
+			}
+			
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return false;
 	}
 
 

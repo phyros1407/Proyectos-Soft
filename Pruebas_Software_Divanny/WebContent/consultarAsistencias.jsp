@@ -39,16 +39,17 @@
 </thead>
 <tbody  style="height: 300px;  overflow-y: auto; overflow-x: hidden; display:block;">
 <%for(int i=0;i<empleados.size();i++){%>
-<form action="ConsultarAsistencias" method="post">
-<tr style="border-width: 1px;border-style: solid;" height="50px;">
-<td style="width: 180px;"><%=empleados.get(i).getDni() %></td>
-<td style="width: 260px;"><%=empleados.get(i).getNombre() %></td>
-<td style="width: 260px;"><%=empleados.get(i).getApellido() %></<td>
-<td style="width: 180px;"><%=empleados.get(i).getPerfilD() %></td><td style="width: 120px;">Activo</td>
-<td style="width: 120px;"><input type="submit" value="Visualizar"></td>
-</tr><input type="hidden" name="dni" value="<%=empleados.get(i).getDni() %>">
-<input type="hidden" name="nombreC" value="<%=empleados.get(i).getNombre()%>&nbsp<%=empleados.get(i).getApellido() %>"></form><%} %>
-</tbody>
+	<form action="ConsultarAsistencias" method="post">
+		<tr style="border-width: 1px;border-style: solid;" height="50px;">
+			<td style="width: 180px;"><%=empleados.get(i).getDni() %></td>
+			<td style="width: 260px;"><%=empleados.get(i).getNombre() %></td>
+			<td style="width: 260px;"><%=empleados.get(i).getApellido() %></<td>
+			<td style="width: 180px;"><%=empleados.get(i).getPerfilD() %></td><td style="width: 120px;">Activo</td>
+			<td style="width: 120px;"><input type="submit" value="Visualizar"></td>
+		</tr>
+		<input type="hidden" name="dni" value="<%=empleados.get(i).getDni() %>">
+		<input type="hidden" name="nombreC" value="<%=empleados.get(i).getNombre()%>&nbsp<%=empleados.get(i).getApellido() %>"></form><%} %>
+	</tbody>
  </table>
 </div>   
 

@@ -10,9 +10,9 @@ public interface I_Asistencias {
 
 	
 	public ArrayList<EmpleadoBean> listarEmpleados(int est);
-	public boolean registrarAsistenciaEnt(int dni,int estado);
-	public int obtenerEstado(int dni);
-	public boolean registrarInasistencias(int dni);
+	public boolean registrarAsistenciaEnt(String dni,int estado);
+	public int obtenerEstado(String dni);
+	public boolean registrarInasistencias(String dni);
 	public boolean estadoInasistencias();
-	public ArrayList<AsistenciasBean> listarAsistencias(int dni);
+	public ArrayList<AsistenciasBean> listarAsistencias(String dni);
 }

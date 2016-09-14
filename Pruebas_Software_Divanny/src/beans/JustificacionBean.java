@@ -7,7 +7,7 @@ public class JustificacionBean {
 	
 		private int id;
 		private int id_asis;
-		private int dni;
+		private String dni;
 		private String fechaJ;
 		private String motivo;
 		String comentario;
@@ -28,10 +28,10 @@ public class JustificacionBean {
 		public void setId_asis(int id_asis) {
 			this.id_asis = id_asis;
 		}
-		public int getDni() {
+		public String getDni() {
 			return dni;
 		}
-		public void setDni(int dni) {
+		public void setDni(String dni) {
 			this.dni = dni;
 		}
 		public String getFechaJ() {

@@ -22,7 +22,7 @@ EmpleadoBean usuario=(EmpleadoBean) session.getAttribute("sesion");%>
   <div class=" col-xs-6 col-md-6" >
   	<div style="margin-top:45px;margin-left:60px;">
 	  	<h3><%=usuario.getPerfilD() %> :<br><%=usuario.getNombre()%> <%=usuario.getApellido() %></h3>
-		<a href="Sistema">Cerrar Sesión</a>
+		<a href="Sistema"><span class="glyphicon glyphicon-off"></span>Cerrar Sesión</a>
   	</div>
   </div>
 </div>

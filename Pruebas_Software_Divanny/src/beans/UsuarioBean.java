@@ -5,7 +5,7 @@ public class UsuarioBean {
 	private int idCuenta;
 	private String usuario;
 	private String contraseña;
-	private int dni_trabajador;	
+	private String dni_trabajador;	
 	private char estado;
 	public int getIdCuenta() {
 		return idCuenta;
@@ -25,10 +25,10 @@ public class UsuarioBean {
 	public void setContraseña(String contraseña) {
 		this.contraseña = contraseña;
 	}
-	public int getDni_trabajador() {
+	public String getDni_trabajador() {
 		return dni_trabajador;
 	}
-	public void setDni_trabajador(int dni_trabajador) {
+	public void setDni_trabajador(String dni_trabajador) {
 		this.dni_trabajador = dni_trabajador;
 	}
 	public char getEstado() {

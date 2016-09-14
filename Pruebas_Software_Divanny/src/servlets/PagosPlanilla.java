@@ -43,7 +43,7 @@ public class PagosPlanilla extends HttpServlet {
 		I_Asistencias asistencias=dao.getAsistenciasDAO();
 		
 		double sueldo,sueldoR,perfil,aumento=0,descuento,seguroV,seguroS;
-		int dni=0;
+		String dni="";
 		ArrayList<EmpleadoBean> empleado= asistencias.listarEmpleados(0);
 		
 		for(int i=0;i<empleado.size();i++){
