@@ -15,7 +15,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css'>
-
+<link rel="shortcut icon" href="images/icono.ico" />
 </head>
 <body style="background: #333333; font-family: 'Open Sans', sans-serif;">
 

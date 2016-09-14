@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="shortcut icon" href="images/icono.ico" />
 <title>Insert title here</title>
 <link href="css/style.css" rel='stylesheet' type='text/css' />
 <%int m=Integer.parseInt(request.getParameter("m"));

@@ -12,6 +12,7 @@
 <script type="text/javascript" src="./js/validaciones.js" charset="UTF-8"></script>
 <script type="text/javascript" src="./js/ajax_call.js" charset="UTF-8"></script>
 <title>Inicio</title>
+<link rel="shortcut icon" href="images/icono.ico" />
 </head>
 <body style="background-color: #f7f7f7;">
 	<jsp:include page="menu.jsp"><jsp:param name="m" value="1" /></jsp:include>
