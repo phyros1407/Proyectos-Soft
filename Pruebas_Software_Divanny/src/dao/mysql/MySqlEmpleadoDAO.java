@@ -372,6 +372,33 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 	}
 
 
+	@Override
+	public boolean comprobarExistencia(String dni) {
+		// TODO Auto-generated method stub
+		
+		try{
+			
+			Connection conexion=MySqlDAOFactory.obtenerConexion();
+			Statement stmt=conexion.createStatement();
+			
+			ResultSet rs = stmt.executeQuery("select * from t_trabajador where dni = '"+dni+"'");
+			
+			
+			if(rs.first()){
+				return false;
+			}else{
+				return true;
+			}
+			
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		return false;
+		
+	}
+
+
+	
 	
 
 	

@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -10,10 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 import beans.ContactoBean;
 import beans.CorreoBean;
 import beans.DetalleTrabajadorBean;
 import beans.EmpleadoBean;
+import beans.ResponseObject;
 import beans.VendedorBean;
 import dao.factory.DAOFactory;
 import dao.interfaces.I_Empleado;
@@ -38,23 +42,27 @@ public class Empleado extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String accion = request.getParameter("accion");
+		DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+		I_Empleado empleadodao=dao.getEmpleadoDAO();
+		
+		
+		
 		HttpSession sesion=request.getSession();
 		if(sesion.getAttribute("sesion")==null){
 			response.sendRedirect("login.jsp");
 		}else{
-		if(accion.equalsIgnoreCase("listar")){
-			DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-			I_Empleado empleadodao=dao.getEmpleadoDAO();
 			
-			ArrayList<EmpleadoBean> empleados=empleadodao.listar();
-			
-			request.setAttribute("empleados", empleados);
-			response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-	        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-	        response.setDateHeader("Expires", 0); // Proxies.
-			getServletContext().getRequestDispatcher("/empleados.jsp").forward(request, response);
-		}
+			if(request.getParameter("accion")==null){
+				
+				
+				ArrayList<EmpleadoBean> empleados=empleadodao.listar();
+				
+				request.setAttribute("empleados", empleados);
+				response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+		        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+		        response.setDateHeader("Expires", 0); // Proxies.
+				getServletContext().getRequestDispatcher("/empleados.jsp").forward(request, response);
+			}
 		}
 		
 	}
@@ -64,6 +72,10 @@ public class Empleado extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+		I_Empleado empleadodao=dao.getEmpleadoDAO();
+		
 		String accion = request.getParameter("accion");
 		HttpSession sesion=request.getSession();
 		if(sesion.getAttribute("sesion")==null){
@@ -75,6 +87,9 @@ public class Empleado extends HttpServlet {
 			System.out.println("SE ESTA REGISTRANDO------------------------");
 			String perfil=request.getParameter("perfil");
 			System.out.println(perfil);
+			
+			
+			
 			if(perfil.equalsIgnoreCase("5")){
 				int dni=Integer.parseInt(request.getParameter("dni"));
 				String nombre=request.getParameter("nombre");
@@ -88,14 +103,13 @@ public class Empleado extends HttpServlet {
 				double sueldo=Double.parseDouble(request.getParameter("sueldo"));
 				String sexo=request.getParameter("sexo");
 
-				DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-				I_Empleado empleadodao=dao.getEmpleadoDAO();
+				
 				
 				EmpleadoBean empleado=new EmpleadoBean();
 				empleado.setDni(dni);
-				empleado.setNombre(nombre);
-				empleado.setApellido(apellidos);
-				empleado.setResidencia(direccion);
+				empleado.setNombre(nombre.trim());
+				empleado.setApellido(apellidos.trim());
+				empleado.setResidencia(direccion.trim());
 				empleado.setSexo(sexo);
 				empleado.setPerfil(Integer.parseInt(perfil));
 				
@@ -111,7 +125,7 @@ public class Empleado extends HttpServlet {
 					
 					CorreoBean corr = new CorreoBean();
 					corr.setDni_trab(dni);
-					corr.setCorreo(correo);
+					corr.setCorreo(correo.trim());
 					
 					empleadodao.guardarCorreo(corr);
 					
@@ -129,13 +143,20 @@ public class Empleado extends HttpServlet {
 						vendedor.setPorcentaje(comision);
 						if(empleadodao.registrarVen(vendedor)){
 							System.out.println("YA GRABO EN T_VENDEDOR");
-							request.setAttribute("empleados", empleadodao.listar());
+							/*request.setAttribute("empleados", empleadodao.listar());
 							request.setAttribute("mensaje", "Empleado creado correctamente");
-							getServletContext().getRequestDispatcher("/empleados.jsp").forward(request,response);
+							getServletContext().getRequestDispatcher("/empleados.jsp").forward(request,response);*/
+							
+							out.println("<script type=\"text/javascript\">");
+							out.println("alert('Se registro al empleado');");
+							out.println("location='Empleado'");
+							out.println("</script>");
+							
 						}else{
-							request.setAttribute("empleados", empleadodao.listar());
-							request.setAttribute("mensaje", "Empleado creado No correctamente");
-							getServletContext().getRequestDispatcher("/empleados.jsp").forward(request,response);
+							out.println("<script type=\"text/javascript\">");
+							out.println("alert('Ocurrio un error, intentelo nuevamente!');");
+							out.println("location='Empleado'");
+							out.println("</script>");
 						}
 					}
 					
@@ -152,14 +173,13 @@ public class Empleado extends HttpServlet {
 				double sueldo=Double.parseDouble(request.getParameter("sueldo"));
 				String sexo=request.getParameter("sexo");
 
-				DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-				I_Empleado empleadodao=dao.getEmpleadoDAO();
+				
 				
 				EmpleadoBean empleado=new EmpleadoBean();
 				empleado.setDni(dni);
-				empleado.setNombre(nombre);
-				empleado.setApellido(apellidos);
-				empleado.setResidencia(direccion);
+				empleado.setNombre(nombre.trim());
+				empleado.setApellido(apellidos.trim());
+				empleado.setResidencia(direccion.trim());
 				empleado.setSexo(sexo);
 				empleado.setPerfil(Integer.parseInt(perfil));
 				
@@ -175,7 +195,7 @@ public class Empleado extends HttpServlet {
 					
 					CorreoBean corr = new CorreoBean();
 					corr.setDni_trab(dni);
-					corr.setCorreo(correo);
+					corr.setCorreo(correo.trim());
 					
 					empleadodao.guardarCorreo(corr);
 					
@@ -191,46 +211,69 @@ public class Empleado extends HttpServlet {
 					if(empleadodao.registrarDet(det)){
 						System.out.println("YA GRABO EN T_DETALLE_PAGO");
 						if(perfil.equals("4")){
-							request.setAttribute("empleados", empleadodao.listar());
-							request.setAttribute("mensaje", "Empleado creado correctamente");
-							getServletContext().getRequestDispatcher("/empleados.jsp").forward(request,response);
+							out.println("<script type=\"text/javascript\">");
+							out.println("alert('Se registro al empleado');");
+							out.println("location='Empleado'");
+							out.println("</script>");
 						}else {
 							if(empleadodao.generarUsuario(nombre, apellidos, dni)){
-								System.out.println("YA GRABO EN T_USUARIO");
-								request.setAttribute("empleados", empleadodao.listar());
-								request.setAttribute("mensaje", "Empleado creado correctamente");
-								getServletContext().getRequestDispatcher("/empleados.jsp").forward(request,response);
+								out.println("<script type=\"text/javascript\">");
+								out.println("alert('Se registro al empleado');");
+								out.println("location='Empleado'");
+								out.println("</script>");
 							}else{
-								request.setAttribute("empleados", empleadodao.listar());
-								request.setAttribute("mensaje", "Empleado creado No correctamente");
-								getServletContext().getRequestDispatcher("/empleados.jsp").forward(request,response);
+								out.println("<script type=\"text/javascript\">");
+								out.println("alert('Ocurrio un error, intentelo nuevamente!');");
+								out.println("location='Empleado'");
+								out.println("</script>");
 							}
 						}
 					}
 				}
 			}	
 		}
+		
+		
 		if(accion.equalsIgnoreCase("buscar")){
 			String dni=request.getParameter("dni");
+			System.out.println(dni);
+			boolean empleadoB = empleadodao.comprobarExistencia(dni);
 			
-			DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
-			I_Empleado emp=dao.getEmpleadoDAO();
+			ResponseObject responseobj=null;
+			
+			
+				responseobj=new ResponseObject();
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				responseobj.setSuccess(true);
+				responseobj.setObject(empleadoB);
+			
+			
+			response.getWriter().write(new Gson().toJson(responseobj));
+			System.out.println("json" + new Gson().toJson(responseobj));
 			
 			
 		}
+		
 		if(accion.equalsIgnoreCase("eliminar")){
 			String dni=request.getParameter("dni");
 			
-			DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
+			
 			I_Empleado emp=dao.getEmpleadoDAO();
 			
 			if(emp.eliminarEmpleado(dni)){
-				request.setAttribute("empleados", emp.listar());
+				/*request.setAttribute("empleados", emp.listar());
 				request.setAttribute("mensaje", "Empleado eliminado correctamente");
 				response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
 		        response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
 		        response.setDateHeader("Expires", 0); // Proxies.
-				getServletContext().getRequestDispatcher("/empleados.jsp").forward(request,response);
+				getServletContext().getRequestDispatcher("/empleados.jsp").forward(request,response);*/
+				
+				
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('Se elimino al empleado');");
+				out.println("location='Empleado'");
+				out.println("</script>");
 			}
 		}
 		

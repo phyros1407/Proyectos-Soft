@@ -29,5 +29,7 @@ public interface I_Empleado {
 		public boolean guardarHor(ObreroBean obrero);
 		public EmpleadoBean buscar(String dni);
 		public boolean eliminarEmpleado(String dni);
+		
+		public boolean comprobarExistencia(String dni);
 	
 }

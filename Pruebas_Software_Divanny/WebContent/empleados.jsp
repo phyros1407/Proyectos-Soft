@@ -48,18 +48,7 @@ $(document).ready(function (e) {
 	});
 //BUSCAR
 
-function buscar(){
-	var dni = $('#buscador').val();	
-	var accion=$('#accion').val();
-	alert(accion)
-	$.post('Empleado',{
-		dni : dni,
-		accion : accion
-	},function(response){
-		
-		
-	});
-}
+
 
 </script>   
 <jsp:include page="menu.jsp"><jsp:param name="m" value="4" /></jsp:include>
