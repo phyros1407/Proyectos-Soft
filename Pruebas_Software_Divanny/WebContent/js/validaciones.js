@@ -47,6 +47,7 @@ function control(f){
     alert("¡ARCHIVO INVALIDO, SELECCIONE OTRO!");;
 }
 
+
 function NumCheck(e, field) {
 
 	  key = e.keyCode ? e.keyCode : e.which
@@ -78,4 +79,46 @@ function NumCheck(e, field) {
 	  return false
 
 	}
+
+
+
+$(document).ready(function(){
+    $("#loader").click(function(){
+                // Load the page into the div
+        $("#resultreturn").load("detalle.jsp");
+                // Show the modal dialog
+        $("#resultreturn").dialog({ modal: true });
+    });
+});
+
+$(document).ready(function () {
+    (function ($) {
+        $('#filter').keyup(function () {
+            var rex = new RegExp($(this).val(), 'i');
+            $('.searchable tr').hide();
+            $('.searchable tr').filter(function () {
+                return rex.test($(this).text());
+            }).show();
+        })
+    }(jQuery));
+});
+//modal eliminar
+$(document).ready(function (e) { 
+	$('#modE').on('show.bs.modal', function(e) { 
+		var id = $(e.relatedTarget).data().id; 
+		$(e.currentTarget).find('#dni').val(id); 
+		}); 
+	});
+	
+	
+$(document).ready(function (e) { 
+	$('#modE2').on('show.bs.modal', function(e) { 
+		var id = $(e.relatedTarget).data().idrec; 
+		$(e.currentTarget).find('#dniRec').val(id); 
+		}); 
+	});
+W
+
+
+
 

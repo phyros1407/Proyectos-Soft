@@ -30,7 +30,7 @@ EmpleadoBean usuario=(EmpleadoBean) session.getAttribute("sesion");%>
 <div id="menunobu0" style="margin-left: 180px;">
         <ul> 
         
-        <li><a href="" class="menunobu<%=w%>">Asistencia</a>
+        <li><a href="#" class="menunobu<%=w%>">Asistencia</a>
         <%if(usuario.getPerfilD().equalsIgnoreCase("Secretaria")){ %>
         <ul> 
 			<li><a href="Asistencias?est=0">Entrada</a></li>
@@ -63,7 +63,7 @@ EmpleadoBean usuario=(EmpleadoBean) session.getAttribute("sesion");%>
         <li><a href="#" class="menunobu<%=z%>">Personal</a>
         <%if(usuario.getPerfilD().equalsIgnoreCase("Administrador")){ %>
         <ul> 
-        <li><a href="Empleado">Empleados</a></li> <li><a href="usuarios.jsp">Usuarios</a></li>
+        <li><a href="Empleado">Empleados</a></li> 
         </ul><%} %>
         </li>
         

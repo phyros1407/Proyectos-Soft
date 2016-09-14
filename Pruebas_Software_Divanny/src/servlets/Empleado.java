@@ -91,6 +91,7 @@ public class Empleado extends HttpServlet {
 			
 			
 			if(perfil.equalsIgnoreCase("5")){
+				
 				String dni=request.getParameter("dni");
 				String nombre=request.getParameter("nombre");
 				String apellidos=request.getParameter("apellidos");
@@ -120,6 +121,11 @@ public class Empleado extends HttpServlet {
 					contac.setDni_trab(dni);
 					for(int i=0;i<contacto.length;i++){
 						contac.setTelefono(contacto[i]);
+						if(contacto[i].length()==9){
+							contac.setDescripcion("CELULAR");
+						}else{
+							contac.setDescripcion("FIJO");
+						}
 						empleadodao.guardarCon(contac);
 					}
 					
@@ -190,6 +196,11 @@ public class Empleado extends HttpServlet {
 					contac.setDni_trab(dni);
 					for(int i=0;i<contacto.length;i++){
 						contac.setTelefono(contacto[i]);
+						if(contacto[i].length()==9){
+							contac.setDescripcion("CELULAR");
+						}else{
+							contac.setDescripcion("FIJO");
+						}
 						empleadodao.guardarCon(contac);
 					}
 					
@@ -301,6 +312,20 @@ public class Empleado extends HttpServlet {
 				out.println("</script>");
 			}
 		}	
+		
+		
+		if(accion.equalsIgnoreCase("obtenerDatos")){
+			
+			String dni = request.getParameter("dniObt");
+			
+			EmpleadoBean empleado=empleadodao.buscar(dni);
+			
+		}
+		
+		
+		
+		
+		
 	}
 }
 }

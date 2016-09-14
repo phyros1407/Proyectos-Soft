@@ -72,7 +72,7 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 			Connection conexion=MySqlDAOFactory.obtenerConexion();
 			Statement stmt=conexion.createStatement();
 			
-			int filas1=stmt.executeUpdate("insert into t_contacto (dni_trab,telefono) values('"+contacto.getDni_trab()+"','"+contacto.getTelefono()+"')");
+			int filas1=stmt.executeUpdate("insert into t_contacto (dni_trab,descripcion,telefono) values('"+contacto.getDni_trab()+"','"+contacto.getDescripcion()+"','"+contacto.getTelefono()+"')");
 			if(filas1==1){
 				return true;
 			}
@@ -334,7 +334,9 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 			Connection conexion=MySqlDAOFactory.obtenerConexion();
 			Statement stmt=conexion.createStatement();
 			
-			ResultSet rs=stmt.executeQuery("select * from t_trabajador,t_perfil,t_detalle_pago where id_perfil=perfil and  dni = '"+dni+"' ");
+			ResultSet rs=stmt.executeQuery("select * "
+										 + "from t_trabajador t,t_perfil p,t_detalle_pago dp,t_correo cr "
+										 + "where p.id_perfil = t.perfil and  t.dni = dp.dni_trab and  cr.dni_trab = t.dni and t.dni = '"+dni+"'");
 			
 			while(rs.next()){
 				empleado.setDni(rs.getString("dni"));

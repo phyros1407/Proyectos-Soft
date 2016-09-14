@@ -53,3 +53,19 @@
 
 				});
 			}
+			  
+			  
+			  
+			  
+			  //ENCONTRAR TRABAJADOR Y JALÑAR DATOS PARA EL MODIFICAR
+			  function obtenerDatos(dni){
+						
+					var accion="obtenerDatos";
+					$.post('Justificacion',{	
+						dniObt : dni,
+						accion : accion
+					},function(response){
+						
+
+					});
+			  }

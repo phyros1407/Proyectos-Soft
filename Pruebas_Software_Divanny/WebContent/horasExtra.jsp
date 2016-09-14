@@ -86,6 +86,11 @@ function fecha(){
 					</tr>
 				</thead>
 				<tbody class=" table-stripped searchable">
+					<%if(vendedores.size()<=0) {%>
+						<tr>
+							<td colspan="3" style="text-align:center;">No se encuentran obreros registrados.</td>
+						</tr>
+					<%} %>
 					<%for(int i=0;i<vendedores.size();i++){ %>
 						<tr>
 							<td><%=vendedores.get(i).getDni() %></td>

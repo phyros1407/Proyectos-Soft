@@ -9,14 +9,18 @@ public class EmpleadoBean {
 	private String apellido;
 	private String residencia;
 	private int perfil;
-	private int celular;
-	private int fijo;
+
 	private double sueldo;
 	private String estado;
 	private int aestado;
 	private String perfilD;
 	private String sexo;
 	
+	private UsuarioBean usuario;
+	
+	private VendedorBean vendedor;
+	
+	private ArrayList<ContactoBean> contactos;
 	
 	private ArrayList<AsistenciasBean> asis;
 	
@@ -62,18 +66,7 @@ public class EmpleadoBean {
 	public void setPerfil(int perfil) {
 		this.perfil = perfil;
 	}
-	public int getCelular() {
-		return celular;
-	}
-	public void setCelular(int celular) {
-		this.celular = celular;
-	}
-	public int getFijo() {
-		return fijo;
-	}
-	public void setFijo(int fijo) {
-		this.fijo = fijo;
-	}
+
 	public double getSueldo() {
 		return sueldo;
 	}
@@ -98,6 +91,24 @@ public class EmpleadoBean {
 	}
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
+	}
+	public UsuarioBean getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(UsuarioBean usuario) {
+		this.usuario = usuario;
+	}
+	public VendedorBean getVendedor() {
+		return vendedor;
+	}
+	public void setVendedor(VendedorBean vendedor) {
+		this.vendedor = vendedor;
+	}
+	public ArrayList<ContactoBean> getContactos() {
+		return contactos;
+	}
+	public void setContactos(ArrayList<ContactoBean> contactos) {
+		this.contactos = contactos;
 	}
 	
 	

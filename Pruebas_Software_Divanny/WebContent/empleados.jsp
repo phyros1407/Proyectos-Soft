@@ -11,6 +11,8 @@
 <script type="text/javascript" src="./js/jquery.js" charset="UTF-8"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+<script type="text/javascript" src="./js/ajax_call.js" charset="UTF-8"></script>
 <!-- *******************************PARA MODAL  ******************************* -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0"> 
@@ -18,8 +20,11 @@
 	ArrayList<EmpleadoBean> empleados = (ArrayList)request.getAttribute("empleados");
 	String mensaje=(String )request.getAttribute("mensaje");
 %>
- <title>Empleados</title>
-<script>$(document).ready(function(){
+<title>Empleados</title>
+
+<script>
+
+$(document).ready(function(){
     $("#loader").click(function(){
                 // Load the page into the div
         $("#resultreturn").load("detalle.jsp");
@@ -55,6 +60,8 @@ $(document).ready(function (e) {
 		}); 
 	});
 W
+
+
 
 
 
@@ -101,7 +108,7 @@ W
 				<td >NOMBRE</td>
 				<td >CARGO</td>
 				<td>ESTADO</td>
-				<td>OPERACIONES</td>
+				<td colspan="2">OPERACIONES</td>
 			</tr>
 		</thead>
 		<tbody style="text-align:left;" class=" table-stripped searchable">
@@ -123,13 +130,16 @@ W
 				<%if(empleados.get(i).getEstado().equalsIgnoreCase("A")){ 
 					if(empleados.get(i).getDni().equalsIgnoreCase(usuario.getDni())){%>
 						<td>ACTIVO</td>
+						<td><a href="#" onclick="obtenerDatos(<%=empleados.get(i).getDni()%>)">MODIFICAR</a></td>
 						<td><a href="" data-toggle="modal" data-id="<%=empleados.get(i).getDni() %>" data-target="#modE" >ELIMINAR</a></td>
 					<%}else{ %>
 						<td>ACTIVO</td>
+						<td><a href="" onclick="obtenerDatos(<%=empleados.get(i).getDni()%>)">MODIFICAR</a></td>
 						<td><a href="" data-toggle="modal" data-id="<%=empleados.get(i).getDni() %>" data-target="#modE">ELIMINAR</a></td>
 					<%} %>
 				<%}else{ %>
 					<td>INACTIVO</td>
+					<td><a href="" onclick="obtenerDatos(<%=empleados.get(i).getDni()%>)">MODIFICAR</a></td>
 					<td><a href="" data-toggle="modal" data-idrec="<%=empleados.get(i).getDni() %>" data-target="#modE2">RECUPERAR</a></td>
 				<%} %>
 				
@@ -155,34 +165,6 @@ W
 <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <jsp:include page="modal2.jsp"><jsp:param value="1" name="i"/> </jsp:include>
 </div>
-
-
-<!-- Modal -->
-  <div class="modal fade" id="modB" role="dialog">
-    <div class="modal-dialog modal-md">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Buscar Empleado</h4>
-        </div>
-        <div class="modal-body">
-        	 <form class="form-horizontal" role="form">
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="buscador">Dni :</label>
-				    <div class="col-sm-5">
-				      <input type="text" class="form-control"  placeholder="Empleado" id="buscador" pattern=".{8,8}" required title="Ingrese un dni valido">
-				    </div>
-				  </div>
-			</form>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-default btn-primary" type="button"  onclick="buscar();" id="myBtn" data-dismiss="modal" >Buscar Empleado</button>
-          <input id="accion" type="hidden" name="accion" value="buscar">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
  <div class="modal fade" id="modE" role="dialog">
     <div class="modal-dialog modal-md">
