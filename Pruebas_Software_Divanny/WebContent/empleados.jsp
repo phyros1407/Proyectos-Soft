@@ -130,7 +130,7 @@ W
 				<%if(empleados.get(i).getEstado().equalsIgnoreCase("A")){ 
 					if(empleados.get(i).getDni().equalsIgnoreCase(usuario.getDni())){%>
 						<td>ACTIVO</td>
-						<td><a href="#" onclick="obtenerDatos(<%=empleados.get(i).getDni()%>)">MODIFICAR</a></td>
+						<td><a href="" onclick="obtenerDatos(<%=empleados.get(i).getDni()%>)">MODIFICAR</a></td>
 						<td><a href="" data-toggle="modal" data-id="<%=empleados.get(i).getDni() %>" data-target="#modE" >ELIMINAR</a></td>
 					<%}else{ %>
 						<td>ACTIVO</td>

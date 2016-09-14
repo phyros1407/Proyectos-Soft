@@ -338,16 +338,36 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 										 + "from t_trabajador t,t_perfil p,t_detalle_pago dp,t_correo cr "
 										 + "where p.id_perfil = t.perfil and  t.dni = dp.dni_trab and  cr.dni_trab = t.dni and t.dni = '"+dni+"'");
 			
-			while(rs.next()){
+			if(rs.next()){
 				empleado.setDni(rs.getString("dni"));
 				empleado.setNombre(rs.getString("nombre"));
 				empleado.setApellido(rs.getString("apellido"));
 				empleado.setResidencia(rs.getString("residencia"));
 				empleado.setPerfil(rs.getInt("perfil"));
 				empleado.setPerfilD(rs.getString("perfilDes"));
+				empleado.setSexo(rs.getString("sexo"));
+				empleado.setSueldo(rs.getDouble("sueldo"));
+				empleado.setCorreo(rs.getString("correo"));
+				empleado.setSegVid(rs.getInt("segVid"));
+				empleado.setSegMed(rs.getDouble("segMed"));
+				
 			}
 			
 			
+			ResultSet rs2 = stmt.executeQuery("select * from t_contacto where dni_trab = '"+dni+"'");
+			
+			ArrayList<ContactoBean> contactos = new ArrayList<ContactoBean>();
+			ContactoBean contacto = null;
+			
+			if(rs2.next()){
+				contacto = new ContactoBean();
+				contacto.setTelefono(rs.getString("telefono"));
+				contactos.add(contacto);
+			}
+			
+			rs2.close();
+			empleado.setContactos(contactos);
+			rs.close();
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}

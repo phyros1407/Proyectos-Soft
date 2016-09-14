@@ -9,12 +9,14 @@ public class EmpleadoBean {
 	private String apellido;
 	private String residencia;
 	private int perfil;
-
+	private String correo;
 	private double sueldo;
 	private String estado;
 	private int aestado;
 	private String perfilD;
 	private String sexo;
+	private double segMed;
+	private int segVid;
 	
 	private UsuarioBean usuario;
 	
@@ -109,6 +111,24 @@ public class EmpleadoBean {
 	}
 	public void setContactos(ArrayList<ContactoBean> contactos) {
 		this.contactos = contactos;
+	}
+	public String getCorreo() {
+		return correo;
+	}
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+	public double getSegMed() {
+		return segMed;
+	}
+	public void setSegMed(double segMed) {
+		this.segMed = segMed;
+	}
+	public int getSegVid() {
+		return segVid;
+	}
+	public void setSegVid(int segVid) {
+		this.segVid = segVid;
 	}
 	
 	

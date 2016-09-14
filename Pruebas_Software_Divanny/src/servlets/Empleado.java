@@ -320,6 +320,19 @@ public class Empleado extends HttpServlet {
 			
 			EmpleadoBean empleado=empleadodao.buscar(dni);
 			
+			ResponseObject responseobj=null;
+			
+			if(empleado!=null){
+				responseobj=new ResponseObject();
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				responseobj.setSuccess(true);
+				responseobj.setObject(empleado);
+			}
+			
+			response.getWriter().write(new Gson().toJson(responseobj));
+			System.out.println("json" + new Gson().toJson(responseobj));
+			
 		}
 		
 		

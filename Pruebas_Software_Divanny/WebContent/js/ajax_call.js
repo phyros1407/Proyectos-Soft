@@ -61,7 +61,7 @@
 			  function obtenerDatos(dni){
 						
 					var accion="obtenerDatos";
-					$.post('Justificacion',{	
+					$.post('Empleado',{	
 						dniObt : dni,
 						accion : accion
 					},function(response){
