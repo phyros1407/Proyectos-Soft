@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.EmpleadoBean;
 import beans.PlanillaBean;
@@ -37,6 +39,11 @@ public class PagosPlanilla extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		HttpSession sesion=request.getSession();
+		if(sesion.getAttribute("sesion")==null){
+			response.sendRedirect("login.jsp");
+		}else{
 		
 		DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
 		I_PagosPlanilla pagosPlanilla=dao.getPagosPlanillaDAO();
@@ -76,7 +83,8 @@ public class PagosPlanilla extends HttpServlet {
 		
 		}
 		}
-		response.sendRedirect("login.jsp");
+		response.sendRedirect("planillaMensual.jsp");
+		}
 	}
 
 	/**
@@ -85,6 +93,12 @@ public class PagosPlanilla extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		HttpSession sesion=request.getSession();
+		if(sesion.getAttribute("sesion")==null){
+			response.sendRedirect("login.jsp");
+		}else{
+		
+		PrintWriter out = response.getWriter();
 		int mes=Integer.parseInt(request.getParameter("selMes")); 
 		int ano=Integer.parseInt(request.getParameter("selAno"));
 		
@@ -94,8 +108,19 @@ public class PagosPlanilla extends HttpServlet {
 		
 		pago=pagosPlanilla.listarPlanilla(mes, ano);
 		
-		request.setAttribute("pago", pago);
-		getServletContext().getRequestDispatcher("/planillaMensual.jsp").forward(request, response);
+		
+		
+		if(pago==null){
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('No hay registros de este mes');");
+			out.println("location='planillaMensual.jsp'");
+			out.println("</script>");	
+		}else{
+			request.setAttribute("pago", pago);
+			getServletContext().getRequestDispatcher("/planillaMensual.jsp").forward(request, response);
+		}
+		}
+		
 		
 	}
 
