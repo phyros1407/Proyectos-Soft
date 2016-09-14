@@ -54,8 +54,23 @@
 </form>
 <br>
 <br>
+<br>
 <br><%if(planillas!=null){%>
-<p align="center"><%=planillas.get(0).getMes() %>  del <%=planillas.get(0).getAno() %><%} %></p>
+<p align="center"><%switch(planillas.get(0).getMes()){
+case 1:%>Enero<%break;
+case 2:%>Febrero<%break; 
+case 3:%>Marzo<%break; 
+case 4:%>Abril<%break; 
+case 5:%>Mayo<%break; 
+case 6:%>Junio<%break; 
+case 7:%>Julio<%break; 
+case 8:%>Agosto<%break; 
+case 9:%>Septiembre<%break; 
+case 10:%>Octubre<%break; 
+case 11:%>Noviembre<%break; 
+case 12:%>Diciembre<%break;   
+}%>  del <%=planillas.get(0).getAno() %><%} %></p>
+
 <br>
 <br>
 <table style="border-width: 1px;border-style: solid; padding: 5%;" class="table" >
@@ -88,11 +103,6 @@ if(planillas!=null){%>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/jquery.filtertable.min.js"></script>
     <script>
-    $(document).ready(function() {
-        $('table').filterTable({ // apply filterTable to all tables on this page
-            quickList: [] // add some shortcut searches
-        });
-    });
     </script>
 <%} %>    
 </body>
