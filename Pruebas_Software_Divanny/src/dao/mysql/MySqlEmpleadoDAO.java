@@ -334,11 +334,16 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 			Connection conexion=MySqlDAOFactory.obtenerConexion();
 			Statement stmt=conexion.createStatement();
 			
-			ResultSet rs=stmt.executeQuery("select * "
-										 + "from t_trabajador t,t_perfil p,t_detalle_pago dp,t_correo cr "
-										 + "where p.id_perfil = t.perfil and  t.dni = dp.dni_trab and  cr.dni_trab = t.dni and t.dni = '"+dni+"'");
 			
-			if(rs.next()){
+			String query = "select * from t_trabajador t,t_perfil p,t_detalle_pago dp,t_correo cr where p.id_perfil = t.perfil and  t.dni = dp.dni_trab and  cr.dni_trab = t.dni and t.dni = '"+dni+"'";
+			
+			System.out.println("BUSCAR EMPLEADO ------>"+query);
+			
+			ResultSet rs=stmt.executeQuery(query);
+			
+			
+			
+			while(rs.next()){
 				empleado.setDni(rs.getString("dni"));
 				empleado.setNombre(rs.getString("nombre"));
 				empleado.setApellido(rs.getString("apellido"));
@@ -353,13 +358,14 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 				
 			}
 			
-			
-			ResultSet rs2 = stmt.executeQuery("select * from t_contacto where dni_trab = '"+dni+"'");
+			String query2 = "select * from t_contacto where dni_trab = '"+dni+"'";
+			System.out.println("BUSCAR CONTACTOS ------->"+query2);
+			ResultSet rs2 = stmt.executeQuery(query2);
 			
 			ArrayList<ContactoBean> contactos = new ArrayList<ContactoBean>();
 			ContactoBean contacto = null;
 			
-			if(rs2.next()){
+			while(rs2.next()){
 				contacto = new ContactoBean();
 				contacto.setTelefono(rs.getString("telefono"));
 				contactos.add(contacto);
