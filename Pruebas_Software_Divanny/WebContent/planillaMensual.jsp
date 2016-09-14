@@ -29,9 +29,6 @@
 <jsp:include page="error.jsp"></jsp:include>
 <%}else{ %>
 <div class="container">
-
-<p align="center" style="font-size: 30px;"> Consulta de Pagos mensuales</p>
-<br>
 <form action="PagosPlanilla" method="post">
 <div class="col-md-3">
 							<select name="selAno" id=""selAno"" class="form-control">
@@ -57,24 +54,29 @@
 </form>
 <br>
 <br>
+<br><%if(planillas!=null){%>
+<p align="center"><%=planillas.get(0).getMes() %>  del <%=planillas.get(0).getAno() %><%} %></p>
+<br>
 <br>
 <table style="border-width: 1px;border-style: solid; padding: 5%;" class="table" >
 <thead style="display:block; background-color: #36393b; color: #ffffff">
 <tr style="border-width: 1px;border-style: solid;">
-<th style="width: 180px;">DNI</th><th style="width: 260px;">Fecha</th><th style="width: 260px;">Año</th><th style="width: 180px;">Sueldo</th><th style="width: 120px;">Aumento</th><th style="width: 120px;">Descuento</th></tr>
+<th style="width: 200px;">DNI</th><th style="width: 180px;">Sueldo</th><th style="width: 180px;">Aumento</th><th style="width: 180px;">Descuento</th><th style="width: 120px;">Seguro Vida</th>
+<th style="width: 120px;">Seguro Salud</th><th style="width: 120px;">Sueldo Neto</th></tr>
 </thead>
 <tbody  style="height: 300px;  overflow-y: auto; overflow-x: hidden; display:block;">
 <%
-if(planillas!=null){
-for(int i=0;i<planillas.size();i++){%>
+if(planillas!=null){%>
+<%for(int i=0;i<planillas.size();i++){%>
 <form action="ConsultarAsistencias" method="post">
 <tr style="border-width: 1px;border-style: solid;" height="50px;">
-<td style="width: 180px;"><%=planillas.get(i).getDni() %></td>
-<td style="width: 260px;"><%=planillas.get(i).getMes() %> del <%=planillas.get(i).getAno() %></td>
-<td style="width: 260px;"><%=planillas.get(i).getAno() %></<td>
+<td style="width: 200px;"><%=planillas.get(i).getDni() %></td>
 <td style="width: 180px;"><%=planillas.get(i).getSueldo() %></td>
-<td style="width: 120px;"><%=planillas.get(i).getAumento() %></td>
-<td style="width: 120px;"><%=planillas.get(i).getDescuento() %>></td>
+<td style="width: 180px;"><%=planillas.get(i).getAumento() %></<td>
+<td style="width: 180px;"><%=planillas.get(i).getDescuento() %></td>
+<td style="width: 120px;"><%=planillas.get(i).getSeguroVida() %></td>
+<td style="width: 120px;"><%=planillas.get(i).getSeguroSalud() %></td>
+<td style="width: 120px;"><%=planillas.get(i).getSueldoNeto()%></td>
 </tr></form><%}} %>
 </tbody>
  </table>

@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -84,7 +85,7 @@ public class PagosPlanilla extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		PrintWriter out = response.getWriter();
 		int mes=Integer.parseInt(request.getParameter("selMes")); 
 		int ano=Integer.parseInt(request.getParameter("selAno"));
 		
@@ -94,8 +95,19 @@ public class PagosPlanilla extends HttpServlet {
 		
 		pago=pagosPlanilla.listarPlanilla(mes, ano);
 		
-		request.setAttribute("pago", pago);
-		getServletContext().getRequestDispatcher("/planillaMensual.jsp").forward(request, response);
+		
+		
+		if(pago==null){
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('No hay registros de este mes');");
+			out.println("location='planillaMensual.jsp'");
+			out.println("</script>");	
+		}else{
+			request.setAttribute("pago", pago);
+			getServletContext().getRequestDispatcher("/planillaMensual.jsp").forward(request, response);
+		}
+		
+		
 		
 	}
 
