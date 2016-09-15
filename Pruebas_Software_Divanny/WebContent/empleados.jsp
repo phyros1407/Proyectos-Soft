@@ -130,16 +130,16 @@ W
 				<%if(empleados.get(i).getEstado().equalsIgnoreCase("A")){ 
 					if(empleados.get(i).getDni().equalsIgnoreCase(usuario.getDni())){%>
 						<td>ACTIVO</td>
-						<td><a href="" onclick="obtenerDatos(<%=empleados.get(i).getDni()%>)">MODIFICAR</a></td>
+						<td><a href="" onclick="obtenerDatos(<%=empleados.get(i).getDni()%>)" data-toggle="modal" data-target="#myModa2">MODIFICAR</a></td>
 						<td><a href="" data-toggle="modal" data-id="<%=empleados.get(i).getDni() %>" data-target="#modE" >ELIMINAR</a></td>
 					<%}else{ %>
 						<td>ACTIVO</td>
-						<td><a href="" onclick="obtenerDatos(<%=empleados.get(i).getDni()%>)">MODIFICAR</a></td>
+						<td><a href="" onclick="obtenerDatos(<%=empleados.get(i).getDni()%>)" data-toggle="modal" data-target="#myModa2">MODIFICAR</a></td>
 						<td><a href="" data-toggle="modal" data-id="<%=empleados.get(i).getDni() %>" data-target="#modE">ELIMINAR</a></td>
 					<%} %>
 				<%}else{ %>
 					<td>INACTIVO</td>
-					<td><a href="" onclick="obtenerDatos(<%=empleados.get(i).getDni()%>)">MODIFICAR</a></td>
+					<td><a href="" onclick="obtenerDatos(<%=empleados.get(i).getDni()%>)" data-toggle="modal" data-target="#myModa2">MODIFICAR</a></td>
 					<td><a href="" data-toggle="modal" data-idrec="<%=empleados.get(i).getDni() %>" data-target="#modE2">RECUPERAR</a></td>
 				<%} %>
 				
@@ -163,7 +163,7 @@ W
 </div>
 
 <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <jsp:include page="modal2.jsp"><jsp:param value="1" name="i"/> </jsp:include>
+  <jsp:include page="modal2.jsp"></jsp:include>
 </div>
 
  <div class="modal fade" id="modE" role="dialog">

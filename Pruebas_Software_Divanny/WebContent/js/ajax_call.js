@@ -66,6 +66,69 @@
 						accion : accion
 					},function(response){
 						
-
+						
+						
+						
+						
+						var dni = response['object']['dni'];
+						var nombre = response['object']['nombre'];
+						var apellido = response['object']['apellido'];
+						var residencia = response['object']['residencia'];
+						var perfil = response['object']['perfil'];
+						var correo = response['object']['correo'];
+						var sueldo = response['object']['sueldo'];
+						var sexo = response ['object']['sexo'];
+						var segMed = response ['object']['segMed'];
+						var segVid = response ['object']['segVid'];
+						var cel;
+						var fijo;
+						
+						
+						for(var i=0;i<response['object']['contactos'][i]['telefono'].length;i++){
+							
+							if(response['object']['contactos'][i]['telefono'].length=9){
+								cel = response['object']['contactos'][i]['telefono'];
+							}
+							
+							else{
+								fijo = response['object']['contactos'][i]['telefono'];
+							}
+							
+						}
+						
+						
+						
+						
+						$("#dniAct").val(dni);
+						$("#errorNombre2").val(nombre);
+						$("#errorApellido2").val(apellido);
+						$("#perfilAct").val(perfil);
+						$("#comAct").val();
+						
+						if(sexo=="M"){
+							$("input:radio[name=sexoAct]")[0].checked = true;
+							
+						}
+						if(sexo=="F"){
+							
+							$("input:radio[name=sexoAct]")[1].checked = true;
+						}
+						
+						$("#errorDireccion2").val(residencia);
+						
+						
+						
+						$("#contactoAct1").val(cel);
+						$("#contactoAct2").val(tel);
+						$("#emailAct").val(correo);
+						$("#sueldoAct").val(sueldo);
+						$("#medicoAct").val(segMed);
+						$("#seguroAct").val(segVid);
+						
+						
+						if(perfil=='5'){
+							$("#comAct").disabled=true;
+						}
+						
 					});
 			  }

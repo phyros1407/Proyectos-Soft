@@ -97,6 +97,12 @@ function existencia(dni){
 }
 
 
+
+
+
+
+
+
 </script>
 <style type="text/css">
 	.verde{
@@ -116,7 +122,7 @@ function existencia(dni){
 <div class="modal-dialog" role="document">
     <div class="modal-content">
     <form method="post" action="Empleado" onsubmit="return validarEspaciado();">
-    	<input type="hidden" name="accion" value="registrar">
+    	<input type="hidden" name="accion" value="actualizar">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel"><b>Modificar Empleado</b></h4>
@@ -132,22 +138,22 @@ function existencia(dni){
 		  </div>
 		  <div class="form-group col-xs-5">
 			  	<label>Sexo</label><br>
-				<label class="radio-inline"><input type="radio" name="sexo" value="M" required>Masculino</label>
-				<label class="radio-inline"><input type="radio" name="sexo" value="F" required>Femenino</label>
+				<label class="radio-inline"><input type="radio" name="sexoAct" value="M" required>Masculino</label>
+				<label class="radio-inline"><input type="radio" name="sexoAct" value="F" required>Femenino</label>
 		  </div>
 		  <div class="form-group col-xs-12">
 		    <label for="pwd">Nombres : </label>
-		    <input autocomplete="off" type="text" class="form-control" maxlength="25" onkeypress="return sololetras(event)" name="nombreAct" id="errorNombre" required>
+		    <input autocomplete="off" type="text" class="form-control" maxlength="25" onkeypress="return sololetras(event)" name="nombreAct" id="errorNombre2" required>
 		    <b id="errorNomRep" style="color:red;"></b>
 		  </div>
 		  <div class="form-group col-xs-12">
 		    <label for="pwd">Apellidos : </label>
-		    <input autocomplete="off" type="text" class="form-control" maxlength="25" onkeypress="return sololetras(event)" name="apellidosAct" id="errorApellido" required>
+		    <input autocomplete="off" type="text" class="form-control" maxlength="25" onkeypress="return sololetras(event)" name="apellidosAct" id="errorApellido2" required>
 		    <b id="errorApeRep" style="color:red;"></b>
 		  </div>
 		  <div class="form-group col-xs-6">
 		  	<label for="pwd">Perfil : </label>
-		  	<select onchange="perfiles(this.value,com);" name="perfilAct" id="perfilAct" class="form-control"><option value="4">Obrero</option><option value="3">Secretario</option>
+		  	<select onchange="perfiles(this.value,comAct);" name="perfilAct" id="perfilAct" class="form-control"><option value="4">Obrero</option><option value="3">Secretario</option>
 		  	<option value="5">Vendedor</option><option value="2">Contador</option><option value="1" selected>Administrador</option></select>
 		  </div>
 		  <div class="form-group col-xs-6">
@@ -156,7 +162,7 @@ function existencia(dni){
 		  </div>
 		  <div class="form-group col-xs-12">
 		    <label for="pwd">Direccion : </label>
-		    <input autocomplete="off" type="text" class="form-control" name="direccion" maxlength="50" required id="errorDireccion" name="direccionAct">
+		    <input autocomplete="off" type="text" class="form-control" name="direccion" maxlength="50" required id="errorDireccion2" name="direccionAct">
 		  	<b id="errorDirRep" style="color:red;"></b>
 		  </div>
 		  <div class="form-group col-xs-6">

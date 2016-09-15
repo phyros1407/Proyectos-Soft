@@ -333,9 +333,9 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 		try{
 			Connection conexion=MySqlDAOFactory.obtenerConexion();
 			Statement stmt=conexion.createStatement();
+			Statement stmt2=conexion.createStatement();
 			
-			
-			String query = "select * from t_trabajador t,t_perfil p,t_detalle_pago dp,t_correo cr where p.id_perfil = t.perfil and  t.dni = dp.dni_trab and  cr.dni_trab = t.dni and t.dni = '"+dni+"'";
+			String query = "select * from t_trabajador t,t_perfil p,t_detalle_pago dp,t_correo cr where p.id_perfil = t.perfil and  t.dni = dp.dni_trab and  cr.dni_trab = t.dni and t.dni = '"+dni+"';";
 			
 			System.out.println("BUSCAR EMPLEADO ------>"+query);
 			
@@ -358,22 +358,22 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 				
 			}
 			
-			String query2 = "select * from t_contacto where dni_trab = '"+dni+"'";
+			String query2 = "select telefono from t_contacto where dni_trab = '"+dni+"';";
 			System.out.println("BUSCAR CONTACTOS ------->"+query2);
-			ResultSet rs2 = stmt.executeQuery(query2);
+			ResultSet rs2 = stmt2.executeQuery(query2);
 			
 			ArrayList<ContactoBean> contactos = new ArrayList<ContactoBean>();
 			ContactoBean contacto = null;
 			
 			while(rs2.next()){
 				contacto = new ContactoBean();
-				contacto.setTelefono(rs.getString("telefono"));
+				contacto.setTelefono(rs2.getString("telefono"));
 				contactos.add(contacto);
 			}
 			
-			rs2.close();
 			empleado.setContactos(contactos);
-			rs.close();
+			
+			
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}
