@@ -8,11 +8,9 @@
 <meta charset="utf-8">
 <!-- ******************************* PARA MODAL ******************************* -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<link href="./css/bootstrap.min.css" rel="stylesheet">
-
-<script  src="./js/ajax_call.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<script  src="js/ajax_call.js"></script>
 <!-- *******************************PARA MODAL  ******************************* -->
 
 <%
@@ -136,7 +134,7 @@ $(document).ready(function (e) {
 					
 					<td><a href="" data-toggle="modal" data-idrec="<%=empleados.get(i).getDni() %>" data-target="#modE2">RECUPERAR</a></td>
 				<%} %>
-				<td><a href="" onclick="obtenerDatos(<%=empleados.get(i).getDni() %>);" data-toggle="modal" data-target="#myModa2">MODIFICAR</a></td>
+				<td><a href="" onclick="obtenerDatos(<%=empleados.get(i).getDni()%>);" data-toggle="modal" data-target="#myModa2">MODIFICAR</a><input type="text" value="<%=empleados.get(i).getDni() %>" id="dni_trabajadorAct"></td>
 			</tr>
 			<%} %>	
 		</tbody>	

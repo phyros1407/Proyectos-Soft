@@ -353,10 +353,10 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 				empleado.setSegMed(rs.getDouble("segMed"));
 				empleado.setCorreo(rs.getString("correo"));
 			}
-			/*
+			
 			String query2 = "select telefono from t_contacto where dni_trab = '"+dni+"';";
 			System.out.println("BUSCAR CONTACTOS ------->"+query2);
-			ResultSet rs2 = stmt2.executeQuery(query2);
+			ResultSet rs2 = stmt.executeQuery(query2);
 			
 			ArrayList<ContactoBean> contactos = new ArrayList<ContactoBean>();
 			ContactoBean contacto = null;
@@ -380,7 +380,7 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 				
 			}
 			
-			*/
+			
 			
 			
 		}catch(Exception e){

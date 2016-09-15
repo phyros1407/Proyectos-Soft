@@ -318,6 +318,10 @@ public class Empleado extends HttpServlet {
 				
 				String dni = request.getParameter("dniObt");
 				
+				if(dni.length()==6){
+					dni = "0"+dni;
+				}
+				System.out.println(dni);
 				EmpleadoBean empleado=empleadodao.buscarEmpleado(dni);
 				
 				ResponseObject responseobj=null;

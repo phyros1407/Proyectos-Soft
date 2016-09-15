@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-<script type="text/javascript" src="./js/validaciones.js" charset="UTF-8"></script>
-<script type="text/javascript" src="./js/jquery.js" charset="UTF-8"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
+<script  src="js/validaciones.js"></script>
+<script src="js/jquery.js"></script>
+
  <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="js/validaciones.js"></script>
-<title>Empleados</title>
+
+
 <script type="text/javascript">
 
 function perfiles(perfil,com){
@@ -107,9 +101,7 @@ function existencia(dni){
 
 </style>
 
-</head>
-<body>
-<%int i=Integer.parseInt(request.getParameter("i")); switch(i){case 1: %>
+
 <div class="modal-dialog" role="document">
     <div class="modal-content">
     <form method="post" action="Empleado" onsubmit="return validarEspaciado();">
@@ -194,35 +186,3 @@ function existencia(dni){
       </form>
     </div>
   </div>
-<%; break;case 2: %>
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-    <form method="post" action="RegistrarEmpleado">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Datos Del Usuario</h4>
-      </div>
-      <div class="modal-body">
-		  <div class="form-group col-xs-12 ">
-		    <label for="pwd">Usuario : </label>
-		    <input type="text" class="form-control" onkeypress="return sololetras(event)" name="nombre" required>
-		  </div>
-		  <div class="form-group col-xs-12">
-		    <label for="pwd">Contraseña : </label>
-		    <input type="text" class="form-control" onkeypress="return sololetras(event)" name="apellidos" required>
-		  </div>
-      	  </div>      	  
-		  	<br/>
-			<br/>   
-			<br>   
-      <div class="modal-footer">
-        <button type="submit" class="loginSubmit" >Guardar cambios</button>
-      </div>
-      
-      </form>
-    </div>
-  </div>
-<%; break;}%>
-
-</body>
-</html>

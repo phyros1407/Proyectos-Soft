@@ -103,14 +103,25 @@ function existencia(dni){
 //ENCONTRAR TRABAJADOR Y JALÑAR DATOS PARA EL MODIFICAR
 function obtenerDatos(dnihtml){
 	
-		alert("DNI INGRESADO-->"+dnihtml);	
+		var nuevoDni="";
+		
+		
+		if(dnihtml.length==6){
+			nuevoDni = "0"+dnihtml;
+		}
+		else{
+			nuevoDni = dnihtml;
+		}
+		
+		
+		alert("DNI INGRESADO-->"+nuevoDni);	
 	
 	
-		var dni = dnihtml;
+		
 		var accion="obtenerDatos";
 		$.post('Empleado',{	
 			
-			dniObt : dni,
+			dniObt : nuevoDni,
 			accion : accion
 			
 		},function(response){
