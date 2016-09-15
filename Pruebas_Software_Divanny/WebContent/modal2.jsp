@@ -23,7 +23,7 @@ function perfiles(perfil,com){
 	}else{
 		
 		com.disabled=true;
-		document.getElementById("com").value="";
+		document.getElementById("comAct").value="";
 	}
 }
 

@@ -117,7 +117,7 @@ $(document).ready(function (e) {
 		$(e.currentTarget).find('#dniRec').val(id); 
 		}); 
 	});
-W
+
 
 
 

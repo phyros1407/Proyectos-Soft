@@ -1,21 +1,20 @@
 <%@page import="beans.EmpleadoBean"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!doctype html>
+
+<!Doctype html>
 <html lang="es">
 <head>
 <%EmpleadoBean usuario=(EmpleadoBean) session.getAttribute("sesion");%>
-
+<meta charset="utf-8">
 <!-- ******************************* PARA MODAL ******************************* -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script type="text/javascript" src="./js/jquery.js" charset="UTF-8"></script>
+
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link href="./css/bootstrap.min.css" rel="stylesheet">
 
-<script type="text/javascript" src="./js/ajax_call.js" charset="UTF-8"></script>
+<script  src="./js/ajax_call.js"></script>
 <!-- *******************************PARA MODAL  ******************************* -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width; initial-scale=1.0"> 
+
 <%
 	ArrayList<EmpleadoBean> empleados = (ArrayList)request.getAttribute("empleados");
 	String mensaje=(String )request.getAttribute("mensaje");
@@ -59,11 +58,6 @@ $(document).ready(function (e) {
 		$(e.currentTarget).find('#dniRec').val(id); 
 		}); 
 	});
-W
-
-
-
-
 
 </script>   
 <jsp:include page="menu.jsp"><jsp:param name="m" value="4" /></jsp:include>

@@ -335,7 +335,7 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 			Statement stmt=conexion.createStatement();
 			Statement stmt2=conexion.createStatement();
 			
-			String query = "select * from t_trabajador t,t_perfil p,t_detalle_pago dp,t_correo cr where p.id_perfil = t.perfil and  t.dni = dp.dni_trab and  cr.dni_trab = t.dni and t.dni = '"+dni+"';";
+			String query = "select t.dni,t.nombre,t.apellido,t.residencia,t.perfil,t.sexo,dp.sueldo,dp.segMed,dp.segVid,cr.correo,v.comision from t_trabajador t,t_detalle_pago dp,t_correo cr,t_vendedor v where   t.dni = dp.dni_trab and t.dni=v.dni_trab and  cr.dni_trab = t.dni and t.dni = '"+dni+"';";
 			
 			System.out.println("BUSCAR EMPLEADO ------>"+query);
 			
@@ -349,12 +349,12 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 				empleado.setApellido(rs.getString("apellido"));
 				empleado.setResidencia(rs.getString("residencia"));
 				empleado.setPerfil(rs.getInt("perfil"));
-				empleado.setPerfilD(rs.getString("perfilDes"));
 				empleado.setSexo(rs.getString("sexo"));
 				empleado.setSueldo(rs.getDouble("sueldo"));
 				empleado.setCorreo(rs.getString("correo"));
 				empleado.setSegVid(rs.getInt("segVid"));
 				empleado.setSegMed(rs.getDouble("segMed"));
+				empleado.setComision(rs.getDouble("comision"));
 				
 			}
 			

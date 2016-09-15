@@ -20,7 +20,7 @@ public class EmpleadoBean {
 	
 	private UsuarioBean usuario;
 	
-	private VendedorBean vendedor;
+	private double comision;
 	
 	private ArrayList<ContactoBean> contactos;
 	
@@ -100,11 +100,12 @@ public class EmpleadoBean {
 	public void setUsuario(UsuarioBean usuario) {
 		this.usuario = usuario;
 	}
-	public VendedorBean getVendedor() {
-		return vendedor;
+	
+	public double getComision() {
+		return comision;
 	}
-	public void setVendedor(VendedorBean vendedor) {
-		this.vendedor = vendedor;
+	public void setComision(double comision) {
+		this.comision = comision;
 	}
 	public ArrayList<ContactoBean> getContactos() {
 		return contactos;
