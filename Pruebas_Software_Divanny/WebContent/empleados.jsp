@@ -100,7 +100,7 @@ $(document).ready(function (e) {
 				<td >NOMBRE</td>
 				<td >CARGO</td>
 				<td>ESTADO</td>
-				<td colspan="2">OPERACIONES</td>
+				<td>OPERACIONES</td>
 			</tr>
 		</thead>
 		<tbody style="text-align:left;" class=" table-stripped searchable">
@@ -134,8 +134,8 @@ $(document).ready(function (e) {
 					
 					<td><a href="" data-toggle="modal" data-idrec="<%=empleados.get(i).getDni() %>" data-target="#modE2">RECUPERAR</a></td>
 				<%} %>
-				<td><a href="" onclick="obtenerDatos(<%=empleados.get(i).getDni()%>);" data-toggle="modal" data-target="#myModa2">MODIFICAR</a><input type="text" value="<%=empleados.get(i).getDni() %>" id="dni_trabajadorAct"></td>
-			</tr>
+				<!--  <td><a href="" onclick="obtenerDatos(<empleados.get(i).getDni()%>);" data-toggle="modal" data-target="#myModa2">MODIFICAR</a><input type="text" value="<%=empleados.get(i).getDni() %>" id="dni_trabajadorAct"></td>
+			</tr>-->
 			<%} %>	
 		</tbody>	
 		</table>
