@@ -327,21 +327,19 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 
 
 	@Override
-	public EmpleadoBean buscar(String dni) {
+	public EmpleadoBean buscarEmpleado(String dni) {
 		// TODO Auto-generated method stub
 		EmpleadoBean empleado= new EmpleadoBean();
 		try{
 			Connection conexion=MySqlDAOFactory.obtenerConexion();
 			Statement stmt=conexion.createStatement();
-			Statement stmt2=conexion.createStatement();
 			
-			String query = "select t.dni,t.nombre,t.apellido,t.residencia,t.perfil,t.sexo,dp.sueldo,dp.segMed,dp.segVid,cr.correo,v.comision from t_trabajador t,t_detalle_pago dp,t_correo cr,t_vendedor v where   t.dni = dp.dni_trab and t.dni=v.dni_trab and  cr.dni_trab = t.dni and t.dni = '"+dni+"';";
+			
+			String query = " select * from t_trabajador t,t_detalle_pago dp,t_correo c where dni like '"+dni+"' and t.dni = dp.dni_trab and t.dni = c.dni_trab";
 			
 			System.out.println("BUSCAR EMPLEADO ------>"+query);
 			
 			ResultSet rs=stmt.executeQuery(query);
-			
-			
 			
 			while(rs.next()){
 				empleado.setDni(rs.getString("dni"));
@@ -351,13 +349,11 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 				empleado.setPerfil(rs.getInt("perfil"));
 				empleado.setSexo(rs.getString("sexo"));
 				empleado.setSueldo(rs.getDouble("sueldo"));
-				empleado.setCorreo(rs.getString("correo"));
 				empleado.setSegVid(rs.getInt("segVid"));
 				empleado.setSegMed(rs.getDouble("segMed"));
-				empleado.setComision(rs.getDouble("comision"));
-				
+				empleado.setCorreo(rs.getString("correo"));
 			}
-			
+			/*
 			String query2 = "select telefono from t_contacto where dni_trab = '"+dni+"';";
 			System.out.println("BUSCAR CONTACTOS ------->"+query2);
 			ResultSet rs2 = stmt2.executeQuery(query2);
@@ -372,6 +368,19 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 			}
 			
 			empleado.setContactos(contactos);
+			
+			if(empleado.getPerfil()==5){
+				
+				String query3 = "select comision from t_vendedor where dni_trab='"+dni+"'";
+				ResultSet rs3 = stmt.executeQuery(query3);
+				
+				if(rs3.next()){
+					empleado.setComision(rs3.getDouble("comision"));
+				}
+				
+			}
+			
+			*/
 			
 			
 		}catch(Exception e){

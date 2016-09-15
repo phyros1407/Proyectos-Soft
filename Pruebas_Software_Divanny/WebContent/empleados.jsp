@@ -111,32 +111,32 @@ $(document).ready(function (e) {
 				<td><%=empleados.get(i).getDni() %></td>
 				<td><%=empleados.get(i).getNombre() %>  <%=empleados.get(i).getApellido() %></td>
 				<%if(empleados.get(i).getPerfilD().equalsIgnoreCase("1")){ %>
-				<td>ADMINISTRADOR</td>
+					<td>ADMINISTRADOR</td>
 				<%}else if(empleados.get(i).getPerfilD().equalsIgnoreCase("2")){ %>
-				<td>CONTADOR</td>
+					<td>CONTADOR</td>
 				<%} else if(empleados.get(i).getPerfilD().equalsIgnoreCase("3")){%>
-				<td>SECRETARIO(A)</td>
+					<td>SECRETARIO(A)</td>
 				<%} else if(empleados.get(i).getPerfilD().equalsIgnoreCase("4")){%>
-				<td>OBRERO</td>
+					<td>OBRERO</td>
 				<%}else{%>
-				<td>VENDEDOR</td>
+					<td>VENDEDOR</td>
 				<% }%>
 				<%if(empleados.get(i).getEstado().equalsIgnoreCase("A")){ 
 					if(empleados.get(i).getDni().equalsIgnoreCase(usuario.getDni())){%>
 						<td>ACTIVO</td>
-						<td><a href="" onclick="obtenerDatos(<%=empleados.get(i).getDni()%>)" data-toggle="modal" data-target="#myModa2">MODIFICAR</a></td>
+						
 						<td><a href="" data-toggle="modal" data-id="<%=empleados.get(i).getDni() %>" data-target="#modE" >ELIMINAR</a></td>
 					<%}else{ %>
 						<td>ACTIVO</td>
-						<td><a href="" onclick="obtenerDatos(<%=empleados.get(i).getDni()%>)" data-toggle="modal" data-target="#myModa2">MODIFICAR</a></td>
+						
 						<td><a href="" data-toggle="modal" data-id="<%=empleados.get(i).getDni() %>" data-target="#modE">ELIMINAR</a></td>
 					<%} %>
 				<%}else{ %>
 					<td>INACTIVO</td>
-					<td><a href="" onclick="obtenerDatos(<%=empleados.get(i).getDni()%>)" data-toggle="modal" data-target="#myModa2">MODIFICAR</a></td>
+					
 					<td><a href="" data-toggle="modal" data-idrec="<%=empleados.get(i).getDni() %>" data-target="#modE2">RECUPERAR</a></td>
 				<%} %>
-				
+				<td><a href="" onclick="obtenerDatos(<%=empleados.get(i).getDni() %>);" data-toggle="modal" data-target="#myModa2">MODIFICAR</a></td>
 			</tr>
 			<%} %>	
 		</tbody>	

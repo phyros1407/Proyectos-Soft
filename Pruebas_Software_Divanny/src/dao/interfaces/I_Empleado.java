@@ -27,7 +27,7 @@ public interface I_Empleado {
 		public String obtenerPerfil(int perfil);
 		public boolean guardarVen(VendedorBean vendedor);
 		public boolean guardarHor(ObreroBean obrero);
-		public EmpleadoBean buscar(String dni);
+		public EmpleadoBean buscarEmpleado(String dni);
 		public boolean eliminarEmpleado(String dni);
 		public boolean rccuperarEmpleado(String dni);
 		
