@@ -19,7 +19,7 @@ public interface I_Empleado {
 		public boolean registrarVen(VendedorBean ven);
 		
 		//LISTAR
-		public ArrayList<EmpleadoBean> listar();
+		public ArrayList<EmpleadoBean> listar();// necesiatre esto
 		public ArrayList<EmpleadoBean> listarTipo(int tipo);
 		
 		//OPERACIONES
@@ -27,9 +27,11 @@ public interface I_Empleado {
 		public String obtenerPerfil(int perfil);
 		public boolean guardarVen(VendedorBean vendedor);
 		public boolean guardarHor(ObreroBean obrero);
-		public EmpleadoBean buscarEmpleado(String dni);
+		public EmpleadoBean buscarEmpleado(String dni);// necesiatre esto
 		public boolean eliminarEmpleado(String dni);
 		public boolean rccuperarEmpleado(String dni);
+		
+		public EmpleadoBean obtenerSeguros(int codigo);
 		
 		
 		public boolean comprobarExistencia(String dni);

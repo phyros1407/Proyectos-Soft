@@ -130,7 +130,7 @@ function fecha(){
 				  <div class="form-group">
 				  	<label  class="control-label col-xs-3" for="valor">Val Vend.</label>
 				  	<div class="col-xs-5">
-				  		<input type="text" class="form-control" id="valor"  name="valor" onkeypress=" return NumCheck(event,this);" required>
+				  		<input type="number" min="1" max="999" placeholder="En soles" class="form-control" id="valor"  name="valor" onkeypress=" return NumCheck(event,this);" required>
 				  	</div>
 				  </div>
 			</form>

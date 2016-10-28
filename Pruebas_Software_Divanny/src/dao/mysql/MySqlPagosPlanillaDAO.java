@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import beans.AsistenciasBean;
 import beans.EmpleadoBean;
 import beans.PlanillaBean;
 import dao.factory.MySqlDAOFactory;
@@ -132,22 +133,20 @@ public class MySqlPagosPlanillaDAO extends MySqlDAOFactory implements I_PagosPla
 	public double descontarSeguroVida(String dni,double sueldoR) {
 		// TODO Auto-generated method stub
 		
-		double seguroVida=0;
+		double porcentaje=0;
 		try{
 			Connection conexion=MySqlDAOFactory.obtenerConexion();
 			Statement stmt=conexion.createStatement();
-			ResultSet rs=stmt.executeQuery("SELECT ROUND("+sueldoR+"*(SELECT porcentaje from t_parametros where id_seg=(select segVid from t_detalle_pago "
-					+ "where dni_trab='"+dni+"'))/100,2) as seguroVida from dual; ");   
+			ResultSet rs=stmt.executeQuery("select porcentaje from t_detalle_parametro where idTrabajador='"+dni+"';");   
 			if (!rs.isBeforeFirst()){
 				conexion.close();
 				return 0;
 			}else{
 			while(rs.next()){
-			seguroVida=rs.getDouble("seguroVida");				
-			System.out.println(seguroVida);
-			
-			}
-			return seguroVida;
+			porcentaje=rs.getDouble("seguroVida");				
+			System.out.println(porcentaje);			
+			}						
+			return (sueldoR*(porcentaje)/100.00);
 			}
 			
 		}catch(Exception e){
@@ -244,4 +243,6 @@ public class MySqlPagosPlanillaDAO extends MySqlDAOFactory implements I_PagosPla
 		
 		return planillas;
 	}
+
+	
 }

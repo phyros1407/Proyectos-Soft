@@ -49,7 +49,16 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 			Connection conexion=MySqlDAOFactory.obtenerConexion();
 			Statement stmt=conexion.createStatement();
 			
-			int filas1=stmt.executeUpdate("insert into t_detalle_pago values('"+det.getDni_trab()+"',"+det.getSueldo()+",15,15,9,1)");
+			
+			
+			
+			
+			
+			int filas1=stmt.executeUpdate("insert into t_detalle_pago values('"+det.getDni_trab()+"',"+det.getSueldo()+",15,15,9,'"+det.getAfp()+"')");
+			
+			//int filas1=stmt.executeUpdate("insert into t_detalle_pago values('"+det.getDni_trab()+"',"+det.getSueldo()+",15,15,9,1)");
+			
+			
 			if(filas1==1){
 				return true;
 			}
@@ -150,9 +159,16 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 			
 			Connection conexion=MySqlDAOFactory.obtenerConexion();
 			Statement stmt=conexion.createStatement();
+			Statement stmt0=conexion.createStatement();
+			
+			ResultSet rs0=stmt0.executeQuery("SELECT * FROM t_usuario where dni_trabajador='"+usuario+"'");
 			
 			ResultSet rs=stmt.executeQuery("select t.dni,t.nombre,t.apellido,t.perfil,t.estado from t_trabajador t,t_usuario u where " 
 					+"u.usuario='"+usuario+"' and u.contraseña='"+contraseña+"'and t.dni=u.dni_trabajador;");
+			
+			if(rs0.isBeforeFirst()){
+				return null;
+			}
 			
 			if(!rs.isBeforeFirst()){
 				return null;
@@ -454,11 +470,39 @@ public class MySqlEmpleadoDAO extends MySqlDAOFactory implements I_Empleado{
 	}
 
 
-	
-	
+	@Override
+	public EmpleadoBean obtenerSeguros(int codigo) {
+    EmpleadoBean empleado=null;
+		
+		try{
+			Connection conexion=MySqlDAOFactory.obtenerConexion();
+			Statement stmt=conexion.createStatement();
+			
+			
+			String query="select t.dni,t.nombre,t.apellido,p.nombre as seguro,dpr.porcentaje "+
+					"from t_trabajador t,t_parametros p,t_detalle_parametro dpr "+
+					"where t.dni='"+codigo+"' and t.dni=dpr.idTrabajador and dpr.idParametro=p.id_seg ;";
+			System.out.println(query);
+			ResultSet rs=stmt.executeQuery(query);
+			
+			while(rs.next()){
+				System.out.println("llenando empleado");
+				empleado=new EmpleadoBean();
+				
+				empleado.setDni(rs.getString("dni"));
+				empleado.setNombre(rs.getString("nombre"));
+				empleado.setApellido(rs.getString("apellido"));
+				empleado.setNomSeguro(rs.getString("seguro"));
+				empleado.setSegVid(Double.parseDouble(rs.getString("porcentaje")));
+			}
+			
+			
+			
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+		
+		return empleado;
+	}
 
-	
-	
-
-	
 }

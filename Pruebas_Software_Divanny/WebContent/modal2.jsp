@@ -273,6 +273,8 @@ function obtenerDatos(dnihtml){
 		  	<select class="form-control" name="seguroAct" id="seguroAct" required>
 		  		<option value="1">AFP</option>
 		  		<option value="2">ONP</option>
+		  		
+		  		
 		  	</select>
 		  </div>
      </div>       

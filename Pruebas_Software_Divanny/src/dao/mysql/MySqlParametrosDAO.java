@@ -42,7 +42,7 @@ public class MySqlParametrosDAO implements I_Parametro{
 
 				ResultSet rs1=stmt.executeQuery("select DISTINCT segMed as SEGMED from t_detalle_pago;");
 				parametro=new ParametrosBean();
-				parametro.setId_seg(3);
+				parametro.setId_seg(4);
 				parametro.setNombre("Seguro médico");
 				
 				if(!rs1.isBeforeFirst()){
@@ -70,31 +70,21 @@ public class MySqlParametrosDAO implements I_Parametro{
 	}
 
 	@Override
-	public boolean actualizarParametros(int id, double porcentaje) {
+	public boolean actualizarParametros(String id, double porcentaje) {
 		// TODO Auto-generated method stub
 		
 		try{
 			int resultado=-1;
-			int resultado1=-1;
 			Connection conexion=MySqlDAOFactory.obtenerConexion();
 			Statement stmt=conexion.createStatement();
 			
-			if(id==1||id==2){
-				resultado=stmt.executeUpdate("update t_parametros set porcentaje="+porcentaje+"where id_seg='"+id+"'");
-				System.out.println(resultado);
-			}else{
-				if(id==3){
-				resultado1=stmt.executeUpdate("update t_detalle_pago set segMed="+porcentaje+";");
-				System.out.println(resultado1);
-				}
-				if(resultado1==0){
-					System.out.println("No hizo el update");
-					return false;
-				}
-				
-			}
 			
-			if(resultado!=0||resultado1!=0){
+				resultado=stmt.executeUpdate("update t_detalle_parametro set porcentaje="+porcentaje+
+						"where idTrabajador=12345678;");
+				System.out.println(resultado);
+			
+			
+			if(resultado!=0){
 				return true;
 			}else{
 				return false;	

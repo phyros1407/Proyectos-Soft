@@ -122,7 +122,7 @@ function fecha(){
 				  <div class="form-group">
 				  	<label  class="control-label col-xs-3" for="valor">Horas : </label>
 				  	<div class="col-xs-3">
-				  		<input type="text" onkeypress="return solonumeros(event)" class="form-control" id="valor"  name="valor" max="2" required placeholder="Cant. de horas">
+				  		<input type="number" onkeypress="return solonumeros(event)" class="form-control" id="valor"  name="valor" min="1" max="8" required placeholder="Cant. de horas">
 				  	</div>
 				  	
 				  </div>

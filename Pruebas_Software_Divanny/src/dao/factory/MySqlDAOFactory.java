@@ -27,7 +27,7 @@ public class MySqlDAOFactory  extends DAOFactory{
 			//conexion = DriverManager.getConnection(url, "root", "SLGsev48189");
 			
 			//LOCALHOST
-			String url = "jdbc:mysql://localhost:3306/bd_divanny_1_4_1";
+			String url = "jdbc:mysql://localhost:3306/bd_divanny_1_5_1";
 			conexion = DriverManager.getConnection(url, "root", "root");
 			
 		} catch (Exception e) {

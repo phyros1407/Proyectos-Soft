@@ -6,6 +6,6 @@ import beans.ParametrosBean;
 public interface I_Parametro {
 	
 	public ArrayList<ParametrosBean> obtenerParametros();
-	public boolean actualizarParametros(int id,double porcentaje);
+	public boolean actualizarParametros(String id,double porcentaje);
 
 }

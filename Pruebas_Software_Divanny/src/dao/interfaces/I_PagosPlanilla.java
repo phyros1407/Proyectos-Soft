@@ -3,6 +3,7 @@ package dao.interfaces;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import beans.EmpleadoBean;
 import beans.PlanillaBean;
 
 public interface I_PagosPlanilla {
@@ -15,6 +16,9 @@ public interface I_PagosPlanilla {
 	public double calcularSeguroSalud(String dni,double sueldoR);
 	public boolean registrarPlanilla(double sueldo,double sueldoR,String dni,double aumento,double descuento,double seguroV,double seguroS);
 	public ArrayList<PlanillaBean> listarPlanilla(int mes, int ano);
+	
+	
+	
 	
 	
 }

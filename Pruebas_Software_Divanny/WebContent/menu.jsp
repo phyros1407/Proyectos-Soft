@@ -46,7 +46,7 @@ EmpleadoBean usuario=(EmpleadoBean) session.getAttribute("sesion");%>
 			<li><a href="Tipo_Empleado?tipo=5">Ventas</a></li> 
 			<li><a href="Tipo_Empleado?tipo=4">Horas extras</a></li>		<%} %>
 			<%if(usuario.getPerfilD().equalsIgnoreCase("Contador")){ %>
-			<li><a href="Parametros">Parámetros</a></li><%} %>	
+			<li><a href="seguro.jsp">Parámetros</a></li><%} %>	
 			<%if(usuario.getPerfilD().equalsIgnoreCase("Secretaria")){ %>        				
 			<li><a href="justificacion.jsp">Justificación</a></li>	<%} %>	
 		</ul>               
@@ -55,7 +55,9 @@ EmpleadoBean usuario=(EmpleadoBean) session.getAttribute("sesion");%>
         <li><a href="#" class="menunobu<%=y%>">Consultar</a>
         
         <ul> <%if(usuario.getPerfilD().equalsIgnoreCase("Contador")){ %>
-        <li><a href="planillaMensual.jsp">Planillas Mensuales</a></li><%} %>
+        <li><a href="planillaMensual.jsp">Planillas Mensuales</a></li>
+        <%} %>
+        
         <%if(usuario.getPerfilD().equalsIgnoreCase("Administrador")||usuario.getPerfilD().equalsIgnoreCase("Secretaria")){ %>
         <li><a href="ConsultarAsistencias">Asistencias</a></li><%} %>
         </ul>

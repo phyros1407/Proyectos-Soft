@@ -39,7 +39,7 @@ public class PagosPlanilla extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		PrintWriter out = response.getWriter();
 		HttpSession sesion=request.getSession();
 		if(sesion.getAttribute("sesion")==null){
 			response.sendRedirect("login.jsp");
@@ -77,13 +77,21 @@ public class PagosPlanilla extends HttpServlet {
 		
 		if(pagosPlanilla.registrarPlanilla(sueldo, sueldoR, dni, aumento, descuento, seguroV, seguroS)){
 			System.out.println("Registro correcto");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Planilla generada correctamente');");
+			out.println("location='planillaMensual.jsp'");
+			out.println("</script>");
+			
 		}else{
 			System.out.println("No funciona");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Ocurrió un error al generar las planillas');");
+			out.println("location='planillaMensual.jsp'");
+			out.println("</script>");
 		}
 		
 		}
 		}
-		response.sendRedirect("planillaMensual.jsp");
 		}
 	}
 

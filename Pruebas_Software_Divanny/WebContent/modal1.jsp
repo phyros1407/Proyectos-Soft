@@ -171,8 +171,9 @@ function existencia(dni){
 		  <div class="form-group col-xs-3">
 		  	<label>Seguro de Vida</label>
 		  	<select class="form-control" name="seguro" required>
-		  		<option value="1">AFP</option>
-		  		<option value="2">ONP</option>
+		  		<option value="1">AFP FLUJO</option>
+		  		<option value="2">AFP MIXTO</option>
+		  		<option value="3">ONP</option>
 		  	</select>
 		  </div>
      </div>       

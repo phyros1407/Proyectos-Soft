@@ -15,8 +15,9 @@ public class EmpleadoBean {
 	private int aestado;
 	private String perfilD;
 	private String sexo;
+	private String NomSeguro;
 	private double segMed;
-	private int segVid;
+	private double segVid;
 	
 	private UsuarioBean usuario;
 	
@@ -26,6 +27,16 @@ public class EmpleadoBean {
 	
 	private ArrayList<AsistenciasBean> asis;
 	
+	
+	
+	
+	
+	public String getNomSeguro() {
+		return NomSeguro;
+	}
+	public void setNomSeguro(String nomSeguro) {
+		NomSeguro = nomSeguro;
+	}
 	public String getPerfilD() {
 		return perfilD;
 	}
@@ -125,10 +136,10 @@ public class EmpleadoBean {
 	public void setSegMed(double segMed) {
 		this.segMed = segMed;
 	}
-	public int getSegVid() {
+	public double getSegVid() {
 		return segVid;
 	}
-	public void setSegVid(int segVid) {
+	public void setSegVid(double segVid) {
 		this.segVid = segVid;
 	}
 	

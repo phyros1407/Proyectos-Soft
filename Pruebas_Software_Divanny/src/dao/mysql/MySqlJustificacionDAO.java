@@ -48,6 +48,8 @@ public class MySqlJustificacionDAO extends MySqlDAOFactory implements I_Justific
 			Statement stmt=conexion.createStatement();
 			
 			String query="select * from t_trabajador where dni='"+codigo+"'";
+			
+			
 			ResultSet rs=stmt.executeQuery(query);
 			
 			while(rs.next()){
