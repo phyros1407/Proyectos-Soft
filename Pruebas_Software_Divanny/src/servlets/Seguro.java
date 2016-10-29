@@ -81,7 +81,7 @@ public class Seguro extends HttpServlet {
 			}else{
 			PrintWriter out = response.getWriter();
 			
-			double pSeguro1=Double.parseDouble(request.getParameter("porcentaje"));
+			
 			String dni=request.getParameter("dni");
 			
 			DAOFactory dao=DAOFactory.getDAOFactory(DAOFactory.MYSQL);
